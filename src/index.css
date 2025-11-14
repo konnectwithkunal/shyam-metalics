@@ -1,3 +1,9 @@
+/* Import Inter font weights */
+@import '@fontsource/inter/300.css'; /* light */
+@import '@fontsource/inter/500.css'; /* medium */
+@import '@fontsource/inter/600.css'; /* semibold */
+@import '@fontsource/inter/700.css'; /* bold */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
