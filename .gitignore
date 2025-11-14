@@ -1,0 +1,34 @@
+# Create .gitignore file
+echo node_modules/ > .gitignore
+echo dist/ >> .gitignore
+echo .env >> .gitignore
+echo .DS_Store >> .gitignore
+```
+
+Or manually create `.gitignore` with this content:
+```
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
