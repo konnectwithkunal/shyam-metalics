@@ -62,9 +62,9 @@ export default function Header() {
               {/* Navigation Menu */}
               <nav className="hidden lg:flex items-center gap-1">
                 {menuItems.map((item, index) => (
-                  <div 
+                  <div
                     key={index}
-                    className="relative"
+                    className="relative group"
                     onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.name)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
@@ -80,7 +80,11 @@ export default function Header() {
 
                     {/* Dropdown Menu */}
                     {item.hasDropdown && openDropdown === item.name && (
-                      <div className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50">
+                      <div
+                        className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50"
+                        onMouseEnter={() => setOpenDropdown(item.name)}
+                        onMouseLeave={() => setOpenDropdown(null)}
+                      >
                         {item.name === 'ABOUT US' ? (
                           <>
                             <Link to="/company-overview" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
@@ -92,6 +96,33 @@ export default function Header() {
                             <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                               Leadership
                             </Link>
+                            <Link to="/awards" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Awards & Achievements
+                            </Link>
+                          </>
+                        ) : item.name === 'BUSINESSES' ? (
+                          <>
+                            <Link to="/manufacturing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Manufacturing Units
+                            </Link>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Products
+                            </a>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Business Verticals
+                            </a>
+                          </>
+                        ) : item.name === 'COMMUNITY' ? (
+                          <>
+                            <Link to="/testimonials" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Testimonials
+                            </Link>
+                            <Link to="/news-events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              News & Events
+                            </Link>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              CSR Initiatives
+                            </a>
                           </>
                         ) : (
                           <>
@@ -157,9 +188,9 @@ export default function Header() {
                 <div className="hidden lg:flex items-center justify-start py-2">
                   <nav className="flex items-center gap-1">
                     {menuItems.map((item, index) => (
-                      <div 
+                      <div
                         key={index}
-                        className="relative"
+                        className="relative group"
                         onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.name)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
@@ -175,7 +206,11 @@ export default function Header() {
 
                         {/* Dropdown Menu */}
                         {item.hasDropdown && openDropdown === item.name && (
-                          <div className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50">
+                          <div
+                            className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50"
+                            onMouseEnter={() => setOpenDropdown(item.name)}
+                            onMouseLeave={() => setOpenDropdown(null)}
+                          >
                             {item.name === 'ABOUT US' ? (
                               <>
                                 <Link to="/company-overview" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
@@ -187,6 +222,33 @@ export default function Header() {
                                 <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                                   Leadership
                                 </Link>
+                                <Link to="/awards" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Awards & Achievements
+                                </Link>
+                              </>
+                            ) : item.name === 'BUSINESSES' ? (
+                              <>
+                                <Link to="/manufacturing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Manufacturing Units
+                                </Link>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Products
+                                </a>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Business Verticals
+                                </a>
+                              </>
+                            ) : item.name === 'COMMUNITY' ? (
+                              <>
+                                <Link to="/testimonials" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Testimonials
+                                </Link>
+                                <Link to="/news-events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  News & Events
+                                </Link>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  CSR Initiatives
+                                </a>
                               </>
                             ) : (
                               <>

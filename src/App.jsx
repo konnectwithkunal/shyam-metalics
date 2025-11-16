@@ -5,6 +5,10 @@ import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import CompanyOverviewPage from './pages/CompanyOverviewPage'
 import Leadership from './pages/Leadership'
+import AwardsPage from './pages/AwardsPage'
+import ManufacturingPage from './pages/ManufacturingPage'
+import TestimonialsPage from './pages/TestimonialsPage'
+import NewsEventsPage from './pages/NewsEventsPage'
 
 export default function App(){
   return (
@@ -16,6 +20,10 @@ export default function App(){
             <Route path="/" element={<HomePage />} />
             <Route path="/company-overview" element={<CompanyOverviewPage />} />
             <Route path="/leadership" element={<Leadership />} />
+            <Route path="/awards" element={<AwardsPage />} />
+            <Route path="/manufacturing" element={<ManufacturingPage />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route path="/news-events" element={<NewsEventsPage />} />
           </Routes>
         </main>
         <Footer />
