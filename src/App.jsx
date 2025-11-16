@@ -6,16 +6,28 @@ import Timeline from './components/Timeline'
 import ProductsGrid from './components/ProductsGrid'
 import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
+import About from './components/About'
+import BusinessVerticals from './components/BusinessVerticals';
+import GlobalPresence from './components/GlobalPresence';
+import GreenVision from './components/GreenVision';
+import CorporateSocialResponsibility from './components/CorporateSocialResponsibility'
 
 export default function App(){
   return (
-    <div className='bg-gray-50 min-h-screen'>
+    <div className='bg-white min-h-screen'>
       <Header />
       <main>
+        
         <Hero />
+        
         <Stats />
+        <About/>
         <Timeline />
+        <BusinessVerticals/>
         <ProductsGrid />
+        <GlobalPresence />
+        <GreenVision />
+        <CorporateSocialResponsibility />
         <Testimonials />
       </main>
       <Footer />
