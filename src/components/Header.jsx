@@ -51,15 +51,13 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
-              <div className="flex-shrink-0">
-                <Link to="/">
-                  <img
-                    src="/logo.jpeg"
-                    alt="Shyam Metallics Logo"
-                    className="h-12 object-contain cursor-pointer"
-                  />
-                </Link>
-              </div>
+              <Link to="/" className="flex-shrink-0">
+                <img
+                  src="/logo.jpeg"
+                  alt="Shyam Metallics Logo"
+                  className="h-12 object-contain"
+                />
+              </Link>
 
               {/* Navigation Menu */}
               <nav className="hidden lg:flex items-center gap-1">
@@ -91,9 +89,9 @@ export default function Header() {
                             <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                               Vision & Mission
                             </a>
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                            <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                               Leadership
-                            </a>
+                            </Link>
                           </>
                         ) : (
                           <>
@@ -132,15 +130,13 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center py-2">
               {/* Left Column - Logo (Vertically Centered) */}
-              <div className="flex-shrink-0">
-                <Link to="/">
-                  <img
-                    src="/logo.jpeg"
-                    alt="Shyam Metallics Logo"
-                    className="h-12 object-contain cursor-pointer"
-                  />
-                </Link>
-              </div>
+              <Link to="/" className="flex-shrink-0">
+                <img
+                  src="/logo.jpeg"
+                  alt="Shyam Metallics Logo"
+                  className="h-12 object-contain"
+                />
+              </Link>
 
               {/* Right Column - Two Stacked Rows */}
               <div className="flex-1 flex flex-col ml-8">
@@ -188,9 +184,9 @@ export default function Header() {
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                                   Vision & Mission
                                 </a>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
                                   Leadership
-                                </a>
+                                </Link>
                               </>
                             ) : (
                               <>
