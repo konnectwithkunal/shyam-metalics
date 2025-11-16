@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,13 +51,13 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
-              <div className="flex-shrink-0">
-                <img 
-                  src="/logo.jpeg" 
-                  alt="Shyam Metallics Logo" 
+              <Link to="/" className="flex-shrink-0">
+                <img
+                  src="/logo.jpeg"
+                  alt="Shyam Metallics Logo"
                   className="h-12 object-contain"
                 />
-              </div>
+              </Link>
 
               {/* Navigation Menu */}
               <nav className="hidden lg:flex items-center gap-1">
@@ -80,15 +81,28 @@ export default function Header() {
                     {/* Dropdown Menu */}
                     {item.hasDropdown && openDropdown === item.name && (
                       <div className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50">
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                          Option 1
-                        </a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                          Option 2
-                        </a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                          Option 3
-                        </a>
+                        {item.name === 'ABOUT US' ? (
+                          <>
+                            <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              About Us
+                            </Link>
+                            <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Leadership
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Option 1
+                            </a>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Option 2
+                            </a>
+                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                              Option 3
+                            </a>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
@@ -113,13 +127,13 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center py-2">
               {/* Left Column - Logo (Vertically Centered) */}
-              <div className="flex-shrink-0">
-                <img 
-                  src="/logo.jpeg" 
-                  alt="Shyam Metallics Logo" 
+              <Link to="/" className="flex-shrink-0">
+                <img
+                  src="/logo.jpeg"
+                  alt="Shyam Metallics Logo"
                   className="h-12 object-contain"
                 />
-              </div>
+              </Link>
 
               {/* Right Column - Two Stacked Rows */}
               <div className="flex-1 flex flex-col ml-8">
@@ -159,15 +173,28 @@ export default function Header() {
                         {/* Dropdown Menu */}
                         {item.hasDropdown && openDropdown === item.name && (
                           <div className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50">
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                              Option 1
-                            </a>
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                              Option 2
-                            </a>
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
-                              Option 3
-                            </a>
+                            {item.name === 'ABOUT US' ? (
+                              <>
+                                <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  About Us
+                                </Link>
+                                <Link to="/leadership" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Leadership
+                                </Link>
+                              </>
+                            ) : (
+                              <>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Option 1
+                                </a>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Option 2
+                                </a>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
+                                  Option 3
+                                </a>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
