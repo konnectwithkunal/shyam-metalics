@@ -1,7 +1,7 @@
 import React from 'react';
 import { Building2, Factory, Award, Zap, TrendingUp, MapPin, Users, Shield, Landmark, Globe2, Boxes, LineChart } from 'lucide-react';
 
-export default function CompanyOverview() {
+export default function CompanyOverviewPage() {
   const milestones = [
     { year: '1991', event: 'Shyam SEL and Power Limited incorporated under the leadership of Mr. Mahabir Prasad Agarwal' },
     { year: '2002', event: 'Shyam DRI & Power Limited incorporated on 10 December at Kolkata, West Bengal' },
@@ -165,7 +165,7 @@ export default function CompanyOverview() {
         </div>
 
         {/* Products Portfolio */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
           <div className="text-center mb-10">
             <Boxes className="w-12 h-12 text-orange-500 mx-auto mb-4" />
             <h2 className="text-3xl font-bold mb-4">
@@ -196,7 +196,7 @@ export default function CompanyOverview() {
         </div>
 
         {/* Competitive Advantages */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-gradient-to-br from-orange-50 to-white rounded-xl p-8 border-2 border-orange-200">
             <Globe2 className="w-10 h-10 text-orange-500 mb-4" />
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Strengths</h3>
