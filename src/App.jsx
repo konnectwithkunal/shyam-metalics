@@ -11,17 +11,19 @@ import BusinessVerticals from './components/BusinessVerticals';
 import GlobalPresence from './components/GlobalPresence';
 import GreenVision from './components/GreenVision';
 import CorporateSocialResponsibility from './components/CorporateSocialResponsibility'
+import CompanyOverview from './components/CompanyOverview'
 
 export default function App(){
   return (
     <div className='bg-white min-h-screen'>
       <Header />
       <main>
-        
+
         <Hero />
-        
+
         <Stats />
         <About/>
+        <CompanyOverview />
         <Timeline />
         <BusinessVerticals/>
         <ProductsGrid />
