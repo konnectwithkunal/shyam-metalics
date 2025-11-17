@@ -104,54 +104,66 @@ export default function About() {
     <section className="py-12 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Vision, Mission, Values Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
+
           {cards.map((card, index) => (
+            // OUTER: scroll / entrance only
             <div
               key={index}
-              className={`bg-white rounded-3xl border-2 border-orange-500 p-10 pt-12 pb-14 flex flex-col items-center text-center transition-all duration-700 hover:scale-[1.02] hover:shadow-xl ${
-                cardsInView 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-20'
-              }`}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150}ms` : '0ms' 
+              style={{
+                opacity: cardsInView ? 1 : 0,
+                transform: cardsInView ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.7s, transform 0.7s',
+                transitionDelay: cardsInView ? `${index * 150}ms` : '0ms'
               }}
             >
-              {/* Icon with rotation animation */}
-              <div className={`mb-6 transition-all duration-700 ${
-                cardsInView 
-                  ? 'opacity-100 rotate-0 scale-100' 
-                  : 'opacity-0 -rotate-45 scale-50'
-              }`}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms' 
-              }}>
-                <card.icon className="w-16 h-16 text-orange-500" strokeWidth={2} />
-              </div>
+              {/* INNER: hover only */}
+             <div className="
+  bg-white rounded-3xl border-2 border-orange-500
+  p-10 pt-12 pb-14
+  flex flex-col items-center text-center
+  h-full           
+  transition-all duration-150 hover:scale-[1.02] hover:shadow-xl
+">
 
-              {/* Title Badge with slide animation */}
-              <div className={`bg-orange-500 text-white px-8 py-3 rounded-2xl mb-6 shadow-md transition-all duration-700 ${
-                cardsInView 
-                  ? 'opacity-100 scale-100' 
-                  : 'opacity-0 scale-75'
-              }`}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms' 
-              }}>
-                <h3 className="text-xl font-bold">{card.title}</h3>
-              </div>
+                {/* Icon with rotation animation */}
+                <div
+                  className="mb-6"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.5)',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms'
+                  }}
+                >
+                  <card.icon className="w-16 h-16 text-orange-500" strokeWidth={2} />
+                </div>
 
-              {/* Content with fade animation */}
-              <p className={`text-gray-800 text-base leading-relaxed transition-all duration-700 ${
-                cardsInView 
-                  ? 'opacity-100' 
-                  : 'opacity-0'
-              }`}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms' 
-              }}>
-                {card.content}
-              </p>
+                {/* Title Badge with slide animation */}
+                <div
+                  className="bg-orange-500 text-white px-8 py-3 rounded-2xl mb-6 shadow-md"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'scale(1)' : 'scale(0.75)',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms'
+                  }}
+                >
+                  <h3 className="text-xl font-bold">{card.title}</h3>
+                </div>
+
+                {/* Content with fade animation */}
+                <p
+                  className="text-gray-800 text-base leading-relaxed"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transition: 'opacity 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms'
+                  }}
+                >
+                  {card.content}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -160,51 +172,55 @@ export default function About() {
         <div ref={overviewRef} className="max-w-7xl mx-auto px-8 mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Side - Text Content */}
-            <div className={`space-y-6 transition-all duration-1000 ${
-              overviewInView 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-10'
-            }`}>
+            <div
+              className={`space-y-6 transition-all duration-1000 ${
+                overviewInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+              }`}
+            >
               <h2 className="text-3xl md:text-4xl font-bold">
                 <span className="text-orange-500">Shyam Metalics:</span>{' '}
                 <span className="text-gray-900">India's Leading Integrated Metal Conglomerate</span>
               </h2>
-              
-              <p className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
-                overviewInView 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: overviewInView ? '200ms' : '0ms' }}>
-                Shyam Metalics is one of India's fastest-growing and most trusted integrated metal producers, with a diversified portfolio spanning carbon steel, stainless steel, ferro alloys, aluminium foil, and long steel products...
+
+              <p
+                className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
+                  overviewInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: overviewInView ? '200ms' : '0ms' }}
+              >
+                Shyam Metalics is one of India's fastest-growing and most trusted integrated metal
+                producers, with a diversified portfolio spanning carbon steel, stainless steel, ferro
+                alloys, aluminium foil, and long steel products...
               </p>
-              
-              <p className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
-                overviewInView 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: overviewInView ? '400ms' : '0ms' }}>
-                As a diversified metal conglomerate, Shyam Metalics operates with a fully integrated ore-to-metal manufacturing model, supported by 83% captive power generation and state-of-the-art facilities...
+
+              <p
+                className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
+                  overviewInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: overviewInView ? '400ms' : '0ms' }}
+              >
+                As a diversified metal conglomerate, Shyam Metalics operates with a fully integrated
+                ore-to-metal manufacturing model, supported by 83% captive power generation and
+                state-of-the-art facilities...
               </p>
-              
-              <button className={`bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-700 flex items-center gap-2 ${
-                overviewInView 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: overviewInView ? '600ms' : '0ms' }}>
+
+              <button
+                className={`bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-700 flex items-center gap-2 ${
+                  overviewInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: overviewInView ? '600ms' : '0ms' }}
+              >
                 Read More →
               </button>
             </div>
 
             {/* Right Side - Image Carousel */}
-            <div className={`relative rounded-2xl overflow-hidden bg-gray-900 h-96 transition-all duration-1000 ${
-              overviewInView 
-                ? 'opacity-100 translate-x-0 scale-100' 
-                : 'opacity-0 translate-x-10 scale-95'
-            }`}
-            style={{ transitionDelay: overviewInView ? '300ms' : '0ms' }}>
+            <div
+              className={`relative rounded-2xl overflow-hidden bg-gray-900 h-96 transition-all duration-1000 ${
+                overviewInView ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-10 scale-95'
+              }`}
+              style={{ transitionDelay: overviewInView ? '300ms' : '0ms' }}
+            >
               {/* Carousel Images with Animation */}
               <div className="relative w-full h-full">
                 {slides.map((slide, index) => (
@@ -213,14 +229,12 @@ export default function About() {
                     src={slide}
                     alt={`Factory ${index + 1}`}
                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
-                      index === currentSlide
-                        ? 'opacity-100 scale-100'
-                        : 'opacity-0 scale-105'
+                      index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                     }`}
                   />
                 ))}
               </div>
-              
+
               {/* Navigation Buttons */}
               <button
                 onClick={prevSlide}
@@ -228,7 +242,7 @@ export default function About() {
               >
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
-              
+
               <button
                 onClick={nextSlide}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center transition-colors z-10"
@@ -256,37 +270,40 @@ export default function About() {
         <div ref={highlightsRef} className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
             {highlights.map((item, index) => (
+              // OUTER: entrance animation only
               <div
                 key={index}
-                className={`bg-white border border-gray-200 rounded-lg px-3 py-7 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-700 ${
-                  highlightsInView 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-10'
-                }`}
-                style={{ 
-                  transitionDelay: highlightsInView ? `${index * 100}ms` : '0ms' 
+                style={{
+                  opacity: highlightsInView ? 1 : 0,
+                  transform: highlightsInView ? 'translateY(0)' : 'translateY(10px)',
+                  transition: 'opacity 0.7s, transform 0.7s',
+                  transitionDelay: highlightsInView ? `${index * 100}ms` : '0ms'
                 }}
               >
-                <div className={`mb-2 transition-all duration-700 ${
-                  highlightsInView 
-                    ? 'opacity-100 scale-100 rotate-0' 
-                    : 'opacity-0 scale-0 rotate-180'
-                }`}
-                style={{ 
-                  transitionDelay: highlightsInView ? `${index * 100 + 200}ms` : '0ms' 
-                }}>
-                  <item.icon className="w-8 h-8 text-orange-500" strokeWidth={2} />
+                {/* INNER: hover only */}
+                <div className="bg-white border border-gray-200 rounded-lg px-3 py-7 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-150">
+                  <div
+                    className="mb-2"
+                    style={{
+                      opacity: highlightsInView ? 1 : 0,
+                      transform: highlightsInView ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(180deg)',
+                      transition: 'opacity 0.7s, transform 0.7s',
+                      transitionDelay: highlightsInView ? `${index * 100 + 200}ms` : '0ms'
+                    }}
+                  >
+                    <item.icon className="w-8 h-8 text-orange-500" strokeWidth={2} />
+                  </div>
+                  <h4
+                    className="text-sm font-semibold text-gray-900 leading-tight"
+                    style={{
+                      opacity: highlightsInView ? 1 : 0,
+                      transition: 'opacity 0.7s',
+                      transitionDelay: highlightsInView ? `${index * 100 + 300}ms` : '0ms'
+                    }}
+                  >
+                    {item.title}
+                  </h4>
                 </div>
-                <h4 className={`text-sm font-semibold text-gray-900 leading-tight transition-all duration-700 ${
-                  highlightsInView 
-                    ? 'opacity-100' 
-                    : 'opacity-0'
-                }`}
-                style={{ 
-                  transitionDelay: highlightsInView ? `${index * 100 + 300}ms` : '0ms' 
-                }}>
-                  {item.title}
-                </h4>
               </div>
             ))}
           </div>

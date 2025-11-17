@@ -285,41 +285,63 @@ export default function GlobalPresence() {
             </div>
           </div>
 
-          {/* Plants List - 20% */}
-          <div className={`lg:w-[20%] bg-orange-50 rounded-2xl p-6 border-2 border-orange-100 transition-all duration-1000 ${
-            mapsInView 
-              ? 'opacity-100 translate-x-0 scale-100' 
-              : 'opacity-0 translate-x-10 scale-95'
-          }`}
-          style={{ transitionDelay: mapsInView ? '400ms' : '0ms' }}>
-            <h4 className={`font-bold text-lg mb-4 flex items-center gap-2 transition-all duration-700 ${
-              mapsInView 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 -translate-y-5'
-            }`}
-            style={{ transitionDelay: mapsInView ? '600ms' : '0ms' }}>
-              <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-              </svg>
-              Our Plants
-            </h4>
-            <div className="space-y-2">
-              {plants.map((plant, index) => (
-                <div 
-                  key={index} 
-                  className={`border-b border-orange-200 pb-3 last:border-0 last:pb-0 cursor-pointer transition-all duration-700 hover:bg-white hover:px-3 hover:py-2 hover:rounded-lg hover:shadow-md hover:-translate-y-1 ${
-                    mapsInView 
-                      ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 -translate-x-5'
-                  }`}
-                  style={{ transitionDelay: mapsInView ? `${800 + (index * 100)}ms` : '0ms' }}
-                >
-                  <p className="font-bold text-sm text-gray-900">{plant.name}</p>
-                  <p className="text-sm text-gray-600">{plant.location}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+       {/* Plants List - 20% */}
+<div
+  className={`lg:w-[20%] bg-orange-50 rounded-2xl p-6 border-2 border-orange-100 transition-all duration-1000 ${
+    mapsInView
+      ? 'opacity-100 translate-x-0 scale-100'
+      : 'opacity-0 translate-x-10 scale-95'
+  }`}
+  style={{ transitionDelay: mapsInView ? '400ms' : '0ms' }}
+>
+  <h4
+    className={`font-bold text-lg mb-4 flex items-center gap-2 transition-all duration-700 ${
+      mapsInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'
+    }`}
+    style={{ transitionDelay: mapsInView ? '600ms' : '0ms' }}
+  >
+    <svg
+      className="w-5 h-5 text-orange-500"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+        clipRule="evenodd"
+      />
+    </svg>
+    Our Plants
+  </h4>
+
+  <div className="space-y-2">
+    {plants.map((plant, index) => (
+      // OUTER WRAPPER = entrance animation only
+      <div
+        key={index}
+        style={{
+          opacity: mapsInView ? 1 : 0,
+          transform: mapsInView ? 'translateX(0)' : 'translateX(-20px)',
+          transition: 'opacity 0.7s, transform 0.7s',
+          transitionDelay: mapsInView ? `${800 + index * 100}ms` : '0ms',
+        }}
+      >
+        {/* INNER DIV = hover only (no inline transition) */}
+        <div className="
+          border-b border-orange-200 pb-3 last:border-0 last:pb-0
+          cursor-pointer
+          hover:bg-white hover:px-3 hover:py-2 hover:rounded-lg hover:shadow-md hover:-translate-y-1
+          transition-all duration-150
+        ">
+          <p className="font-bold text-sm text-gray-900">{plant.name}</p>
+          <p className="text-sm text-gray-600">{plant.location}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
         </div>
       </div>
     </section>

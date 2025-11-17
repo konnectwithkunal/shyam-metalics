@@ -93,22 +93,20 @@ export default function CorporateSocialResponsibility() {
     <section className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-          
+
           {/* LEFT - Video Grid with Animation */}
-          <div 
+          <div
             ref={videoGridRef}
-            className={`bg-white rounded-2xl border border-gray-100 shadow-lg p-6 lg:p-8 flex flex-col transition-all duration-1000 ${
-              videoGridInView 
-                ? 'opacity-100 translate-x-0 scale-100' 
+            className={`bg-white rounded-2xl border border-gray-100 shadow-lg p-6 lg:p-8 flex flex-col transition-all duration-1000 ${videoGridInView
+                ? 'opacity-100 translate-x-0 scale-100'
                 : 'opacity-0 -translate-x-10 scale-95'
-            }`}
+              }`}
           >
-            <div className={`inline-flex items-center space-x-3 mb-4 transition-all duration-700 ${
-              videoGridInView 
-                ? 'opacity-100 translate-y-0' 
+            <div className={`inline-flex items-center space-x-3 mb-4 transition-all duration-700 ${videoGridInView
+                ? 'opacity-100 translate-y-0'
                 : 'opacity-0 -translate-y-5'
-            }`}
-            style={{ transitionDelay: videoGridInView ? '200ms' : '0ms' }}>
+              }`}
+              style={{ transitionDelay: videoGridInView ? '200ms' : '0ms' }}>
               <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-600 text-sm font-semibold">
                 Our Initiatives
               </span>
@@ -119,11 +117,10 @@ export default function CorporateSocialResponsibility() {
               {videos.map((video, index) => (
                 <div
                   key={video.id}
-                  className={`relative rounded-xl overflow-hidden group cursor-pointer h-full transition-all duration-700 ${
-                    videoGridInView 
-                      ? 'opacity-100 translate-y-0 scale-100' 
+                  className={`relative rounded-xl overflow-hidden group cursor-pointer h-full transition-all duration-700 ${videoGridInView
+                      ? 'opacity-100 translate-y-0 scale-100'
                       : 'opacity-0 translate-y-10 scale-90'
-                  }`}
+                    }`}
                   style={{ transitionDelay: videoGridInView ? `${400 + (index * 150)}ms` : '0ms' }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
@@ -153,12 +150,11 @@ export default function CorporateSocialResponsibility() {
               ))}
             </div>
 
-            <div className={`mt-6 flex items-center justify-between gap-4 transition-all duration-700 ${
-              videoGridInView 
-                ? 'opacity-100 translate-y-0' 
+            <div className={`mt-6 flex items-center justify-between gap-4 transition-all duration-700 ${videoGridInView
+                ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-5'
-            }`}
-            style={{ transitionDelay: videoGridInView ? '1000ms' : '0ms' }}>
+              }`}
+              style={{ transitionDelay: videoGridInView ? '1000ms' : '0ms' }}>
               <div className="text-sm text-gray-600">Watch our field stories and impact videos.</div>
               <button className="bg-transparent text-orange-600 font-semibold px-3 py-2 rounded-md hover:bg-orange-50 transition">
                 View All Videos
@@ -167,96 +163,97 @@ export default function CorporateSocialResponsibility() {
           </div>
 
           {/* RIGHT - CSR Info with Animation */}
-          <div 
+          <div
             ref={csrInfoRef}
-            className={`transition-all duration-1000 ${
-              csrInfoInView 
-                ? 'opacity-100 translate-x-0 scale-100' 
+            className={`transition-all duration-1000 ${csrInfoInView
+                ? 'opacity-100 translate-x-0 scale-100'
                 : 'opacity-0 translate-x-10 scale-95'
-            }`}
+              }`}
           >
             <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 lg:p-10 h-full">
-              <div className={`inline-flex items-center space-x-3 mb-4 transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0' 
+              <div className={`inline-flex items-center space-x-3 mb-4 transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-5'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '200ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '200ms' : '0ms' }}>
                 <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-600 text-sm font-semibold">
                   Our Initiatives
                 </span>
                 <span className="text-xs text-gray-400">Community Impact</span>
               </div>
 
-              <h2 className={`text-4xl lg:text-5xl font-extrabold leading-tight mb-3 transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0' 
+              <h2 className={`text-4xl lg:text-5xl font-extrabold leading-tight mb-3 transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '300ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '300ms' : '0ms' }}>
                 Corporate Social <span className="text-orange-500">Responsibility</span>
               </h2>
-              
-              <h3 className={`text-lg font-medium text-orange-500 mb-6 transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0' 
+
+              <h3 className={`text-lg font-medium text-orange-500 mb-6 transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '400ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '400ms' : '0ms' }}>
                 Building communities, empowering lives
               </h3>
 
-              <p className={`text-gray-700 mb-4 text-base leading-relaxed transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0' 
+              <p className={`text-gray-700 mb-4 text-base leading-relaxed transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '500ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '500ms' : '0ms' }}>
                 Shyam Metalics stands for more than steel — we invest in people and places.
                 Our CSR mission focuses on education, healthcare, livelihood and sustainable development to create long-term, measurable impact in the communities we serve.
               </p>
 
-              <p className={`text-gray-600 mb-6 text-sm leading-relaxed transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0' 
+              <p className={`text-gray-600 mb-6 text-sm leading-relaxed transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-5'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '600ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '600ms' : '0ms' }}>
                 We believe in collaborative programs that drive dignity, opportunity and environmental stewardship — shaping a future that's stronger and more inclusive for all.
               </p>
 
               <div className="grid grid-cols-3 gap-4 mb-6">
-                {csrCategories.map((cat, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex flex-col items-center text-center space-y-3 p-3 rounded-xl hover:shadow-xl hover:scale-105 hover:bg-orange-50/50 transition-all duration-300 cursor-pointer group ${
-                      csrInfoInView 
-                        ? 'opacity-100 translate-y-0 scale-100' 
-                        : 'opacity-0 translate-y-10 scale-75'
-                    }`}
-                    style={{ transitionDelay: csrInfoInView ? `${700 + (idx * 100)}ms` : '0ms' }}
-                  >
-                    <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shadow-sm group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
-                      {cat.icon}
-                    </div>
-                    <div className="text-xs font-semibold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">{cat.title}</div>
-                  </div>
-                ))}
-              </div>
+  {csrCategories.map((cat, idx) => (
+    // OUTER: entrance animation only
+    <div
+      key={idx}
+      style={{ 
+        opacity: csrInfoInView ? 1 : 0,
+        transform: csrInfoInView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.75)',
+        transition: 'opacity 0.7s, transform 0.7s',
+        transitionDelay: csrInfoInView ? `${700 + (idx * 100)}ms` : '0ms'
+      }}
+    >
+      {/* INNER: hover only */}
+      <div
+        className="flex flex-col items-center text-center space-y-3 p-3 rounded-xl cursor-pointer group hover:shadow-xl hover:scale-105 hover:bg-orange-50/50 transition-all duration-150"
+      >
+        <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shadow-sm group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-lg group-hover:scale-110 transition-all duration-150">
+          {cat.icon}
+        </div>
+        <div className="text-xs font-semibold text-gray-900 group-hover:text-orange-600 transition-colors duration-150">
+          {cat.title}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
 
-              <div className={`h-px bg-gray-100 my-4 transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 scale-x-100' 
+
+              <div className={`h-px bg-gray-100 my-4 transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 scale-x-100'
                   : 'opacity-0 scale-x-0'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '1300ms' : '0ms' }} />
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '1300ms' : '0ms' }} />
 
-              <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 transition-all duration-700 ${
-                csrInfoInView 
-                  ? 'opacity-100 translate-y-0 scale-100' 
+              <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 transition-all duration-700 ${csrInfoInView
+                  ? 'opacity-100 translate-y-0 scale-100'
                   : 'opacity-0 translate-y-5 scale-95'
-              }`}
-              style={{ transitionDelay: csrInfoInView ? '1400ms' : '0ms' }}>
+                }`}
+                style={{ transitionDelay: csrInfoInView ? '1400ms' : '0ms' }}>
                 <button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-md inline-flex items-center gap-3">
                   Learn More About Our Impact
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,11 +269,11 @@ export default function CorporateSocialResponsibility() {
 
       {/* Video Modal */}
       {isModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn"
           onClick={closeModal}
         >
-          <div 
+          <div
             className="relative w-full max-w-5xl mx-4 animate-scaleIn"
             onClick={(e) => e.stopPropagation()}
           >

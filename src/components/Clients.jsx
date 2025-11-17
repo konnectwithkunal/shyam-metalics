@@ -73,42 +73,49 @@ export default function Clients() {
             {topRowClients.map((client, index) => (
               <div
                 key={`top-${client.id}-${index}`}
-                className={`flex-shrink-0 mx-4 h-24 bg-white rounded-2xl transition-all duration-700 flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 hover:-translate-y-1 ${
-                  topRowInView 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-75'
-                }`}
+                className="flex-shrink-0 mx-4 h-24 bg-white rounded-2xl flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 transition-[border-color] duration-300"
                 style={{ 
-                  transitionDelay: topRowInView ? `${(index % topRowClientsBase.length) * 100}ms` : '0ms' 
+                  opacity: topRowInView ? 1 : 0,
+                  transform: topRowInView ? 'scale(1)' : 'scale(0.75)',
+                  transition: 'opacity 0.5s, transform 0.5s, border-color 0.3s',
+                  transitionDelay: topRowInView ? `${(index % topRowClientsBase.length) * 50}ms` : '0ms' 
                 }}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             ))}
             {/* Duplicate set for seamless loop */}
             {topRowClients.map((client, index) => (
-              <div
-                key={`top-dup-${client.id}-${index}`}
-                className={`flex-shrink-0 mx-4 h-24 bg-white rounded-2xl transition-all duration-700 flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 hover:-translate-y-1 ${
-                  topRowInView 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-75'
-                }`}
-                style={{ 
-                  transitionDelay: topRowInView ? `${(index % topRowClientsBase.length) * 100}ms` : '0ms' 
-                }}
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105"
-                />
-              </div>
-            ))}
+  <div
+    key={`top-${client.id}-${index}`}
+    className="flex-shrink-0 mx-4"
+    style={{
+      opacity: topRowInView ? 1 : 0,
+      transform: topRowInView ? 'translateY(0)' : 'translateY(20px)',
+      transition: 'opacity 0.7s, transform 0.7s',
+      transitionDelay: topRowInView ? `${(index % topRowClientsBase.length) * 80}ms` : '0ms'
+    }}
+  >
+    {/* Scroll Layer */}
+    <div className="h-24 flex items-center justify-center">
+      {/* Hover Layer */}
+      <div className="h-full w-full bg-white rounded-2xl border border-gray-200 px-4 py-4 cursor-pointer group
+          transition-all duration-150
+          hover:shadow-lg hover:scale-105 hover:border-orange-500">
+        <img
+          src={client.logo}
+          alt={client.name}
+          className="max-w-full max-h-full object-contain"
+        />
+      </div>
+    </div>
+  </div>
+))}
+
           </div>
         </div>
       </div>
@@ -129,19 +136,18 @@ export default function Clients() {
             {bottomRowClients.map((client, index) => (
               <div
                 key={`bottom-${client.id}-${index}`}
-                className={`flex-shrink-0 mx-4 h-24 bg-white rounded-2xl transition-all duration-700 flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 hover:-translate-y-1 ${
-                  bottomRowInView 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-75'
-                }`}
+                className="flex-shrink-0 mx-4 h-24 bg-white rounded-2xl flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 transition-[border-color] duration-300"
                 style={{ 
-                  transitionDelay: bottomRowInView ? `${200 + ((index % bottomRowClientsBase.length) * 100)}ms` : '0ms' 
+                  opacity: bottomRowInView ? 1 : 0,
+                  transform: bottomRowInView ? 'scale(1)' : 'scale(0.75)',
+                  transition: 'opacity 0.5s, transform 0.5s, border-color 0.3s',
+                  transitionDelay: bottomRowInView ? `${200 + ((index % bottomRowClientsBase.length) * 50)}ms` : '0ms' 
                 }}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             ))}
@@ -149,19 +155,18 @@ export default function Clients() {
             {bottomRowClients.map((client, index) => (
               <div
                 key={`bottom-dup-${client.id}-${index}`}
-                className={`flex-shrink-0 mx-4 h-24 bg-white rounded-2xl transition-all duration-700 flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 hover:-translate-y-1 ${
-                  bottomRowInView 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-75'
-                }`}
+                className="flex-shrink-0 mx-4 h-24 bg-white rounded-2xl flex items-center justify-center px-4 py-4 group cursor-pointer border border-gray-200 hover:border-orange-300 transition-[border-color] duration-300"
                 style={{ 
-                  transitionDelay: bottomRowInView ? `${200 + ((index % bottomRowClientsBase.length) * 100)}ms` : '0ms' 
+                  opacity: bottomRowInView ? 1 : 0,
+                  transform: bottomRowInView ? 'scale(1)' : 'scale(0.75)',
+                  transition: 'opacity 0.5s, transform 0.5s, border-color 0.3s',
+                  transitionDelay: bottomRowInView ? `${200 + ((index % bottomRowClientsBase.length) * 50)}ms` : '0ms' 
                 }}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             ))}

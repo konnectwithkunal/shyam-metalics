@@ -51,7 +51,7 @@ export default function Testimonials() {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -50px 0px',
     };
 
     const headerObserver = new IntersectionObserver(([entry]) => {
@@ -101,37 +101,34 @@ export default function Testimonials() {
   return (
     <section className="py-16 px-4 relative">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style={{ 
-          backgroundImage: "url('/testibanner.jpeg')"
+        style={{
+          backgroundImage: "url('/testibanner.jpeg')",
         }}
       ></div>
-      
+
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-white/30 z-0"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Animation */}
-        <div 
-          ref={headerRef}
-          className="text-center mb-12"
-        >
-          <h2 className={`text-4xl lg:text-5xl font-bold leading-tight mb-4 transition-all duration-1000 ${
-            headerInView 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 -translate-y-10'
-          }`}>
+        <div ref={headerRef} className="text-center mb-12">
+          <h2
+            className={`text-4xl lg:text-5xl font-bold leading-tight mb-4 transition-all duration-1000 ${
+              headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+            }`}
+          >
             What <span className="text-orange-500">Our</span>
             <br />
             Customer <span className="text-orange-500">Says</span>
           </h2>
-          <p className={`text-gray-600 text-lg max-w-3xl mx-auto transition-all duration-1000 ${
-            headerInView 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-5'
-          }`}
-          style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}>
+          <p
+            className={`text-gray-600 text-lg max-w-3xl mx-auto transition-all duration-1000 ${
+              headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}
+          >
             Every great relationship starts with trust. These are the voices of
             our clients sharing how our work made a real difference in their
             journey.
@@ -139,112 +136,119 @@ export default function Testimonials() {
         </div>
 
         {/* Cards with Staggered Animation */}
-        <div 
-          ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((testimonial, index) => (
+            // OUTER: entrance animation only
             <div
               key={testimonial.id}
-              className={`bg-white rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-700 relative flex flex-col cursor-pointer hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] border border-gray-100 overflow-hidden ${
-                cardsInView 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-20 scale-90'
-              }`}
-              style={{ 
+              style={{
+                opacity: cardsInView ? 1 : 0,
+                transform: cardsInView ? 'translateY(0) scale(1)' : 'translateY(80px) scale(0.9)',
+                transition: 'opacity 0.7s, transform 0.7s',
                 transitionDelay: cardsInView ? `${index * 150}ms` : '0ms',
-                // Separate transition for hover effects
-                transition: cardsInView 
-                  ? 'opacity 0.7s, transform 0.7s, box-shadow 0.3s, translate 0.3s, scale 0.3s' 
-                  : 'opacity 0.7s, transform 0.7s'
               }}
             >
-              {/* Orange top corner like design with Animation */}
-              <div className={`absolute top-0 right-0 transition-all duration-700 ${
-                cardsInView 
-                  ? 'opacity-100 scale-100 rotate-0' 
-                  : 'opacity-0 scale-0 -rotate-90'
-              }`}
-              style={{ transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms' }}>
-                <div className="w-0 h-0 border-t-[60px] border-t-[#f97316] border-l-[60px] border-l-transparent" />
-              </div>
-
-              <div className="p-6 pb-4 flex-1">
-                {/* Avatar + name + stars with Animation */}
-                <div className={`flex items-start gap-3 mb-4 transition-all duration-700 ${
-                  cardsInView 
-                    ? 'opacity-100 translate-x-0' 
-                    : 'opacity-0 -translate-x-5'
-                }`}
-                style={{ transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms' }}>
-                  <div className="w-12 h-12 rounded-full bg-[#E6ECF4] flex items-center justify-center flex-shrink-0">
-                    <svg
-                      className="w-7 h-7 text-[#5A6C7D]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-3.33 0-6 2.24-6 5v.5A.5.5 0 0 0 6.5 20h11a.5.5 0 0 0 .5-.5c0-2.76-2.67-5-6-5Z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-[17px] font-semibold text-[#111827]">
-                      {testimonial.name}
-                    </h3>
-                    <StarRating rating={testimonial.rating} />
-                  </div>
+              {/* INNER: hover only */}
+              <div className="bg-white rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] relative flex flex-col cursor-pointer border border-gray-100 overflow-hidden group transition-all duration-150 hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:scale-[1.03]">
+                {/* Orange top corner like design with Animation */}
+                <div
+                  className="absolute top-0 right-0"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(-90deg)',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms',
+                  }}
+                >
+                  <div className="w-0 h-0 border-t-[60px] border-t-[#f97316] border-l-[60px] border-l-transparent" />
                 </div>
 
-                {/* Text with Animation */}
-                <p className={`text-[#111827] text-[14px] leading-relaxed mb-5 min-h-[120px] transition-all duration-700 ${
-                  cardsInView 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-5'
-                }`}
-                style={{ transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms' }}>
-                  {expandedCard === testimonial.id
-                    ? testimonial.fullText
-                    : testimonial.shortText}
-                </p>
-
-                {/* Read more with Animation */}
-                <button
-                  onClick={() => toggleExpand(testimonial.id)}
-                  className={`text-[#F25822] font-semibold text-sm hover:opacity-80 flex items-center gap-1 transition-all duration-700 ${
-                    cardsInView 
-                      ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 -translate-x-5'
-                  }`}
-                  style={{ transitionDelay: cardsInView ? `${index * 150 + 500}ms` : '0ms' }}
-                >
-                  {expandedCard === testimonial.id ? 'Show Less' : 'Read More'}
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-300 ${
-                      expandedCard === testimonial.id ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div className="p-6 pb-4 flex-1">
+                  {/* Avatar + name + stars with Animation */}
+                  <div
+                    className="flex items-start gap-3 mb-4"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateX(0)' : 'translateX(-20px)',
+                      transition: 'opacity 0.7s, transform 0.7s',
+                      transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms',
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-              </div>
+                    <div className="w-12 h-12 rounded-full bg-[#E6ECF4] flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-7 h-7 text-[#5A6C7D]"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-3.33 0-6 2.24-6 5v.5A.5.5 0 0 0 6.5 20h11a.5.5 0 0 0 .5-.5c0-2.76-2.67-5-6-5Z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-[17px] font-semibold text-[#111827]">
+                        {testimonial.name}
+                      </h3>
+                      <StarRating rating={testimonial.rating} />
+                    </div>
+                  </div>
 
-              {/* Thin orange bottom line with Animation */}
-              <div className={`h-[3px] bg-[#F25822] w-full transition-all duration-700 ${
-                cardsInView 
-                  ? 'opacity-100 scale-x-100' 
-                  : 'opacity-0 scale-x-0'
-              }`}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150 + 600}ms` : '0ms',
-                transformOrigin: 'left'
-              }} />
+                  {/* Text with Animation */}
+                  <p
+                    className="text-[#111827] text-[14px] leading-relaxed mb-5 min-h-[120px]"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateY(0)' : 'translateY(20px)',
+                      transition: 'opacity 0.7s, transform 0.7s',
+                      transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms',
+                    }}
+                  >
+                    {expandedCard === testimonial.id
+                      ? testimonial.fullText
+                      : testimonial.shortText}
+                  </p>
+
+                  {/* Read more with Animation */}
+                  <button
+                    onClick={() => toggleExpand(testimonial.id)}
+                    className="text-[#F25822] font-semibold text-sm hover:opacity-80 flex items-center gap-1"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateX(0)' : 'translateX(-20px)',
+                      transition: 'opacity 0.7s, transform 0.7s, color 0.05s',
+                      transitionDelay: cardsInView ? `${index * 150 + 500}ms` : '0ms',
+                    }}
+                  >
+                    {expandedCard === testimonial.id ? 'Show Less' : 'Read More'}
+                    <svg
+                      className="w-4 h-4 transition-transform duration-150"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      style={{
+                        transform: expandedCard === testimonial.id ? 'rotate(180deg)' : 'rotate(0deg)',
+                      }}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Thin orange bottom line with Animation */}
+                <div
+                  className="h-[3px] bg-[#F25822] w-full"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 600}ms` : '0ms',
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
