@@ -6,19 +6,19 @@ export default function GreenVision() {
     offsets: 0,
     net: 0
   });
-  
+
   const [hasAnimated, setHasAnimated] = useState(false);
   const [titleInView, setTitleInView] = useState(false);
   const [videoInView, setVideoInView] = useState(false);
   const [statsInView, setStatsInView] = useState(false);
-  
+
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const videoRef = useRef(null);
   const statsRef = useRef(null);
 
   const stats = [
-    { 
+    {
       key: 'actual',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -29,7 +29,7 @@ export default function GreenVision() {
       number: 314519,
       label: 'MtCO₂e'
     },
-    { 
+    {
       key: 'offsets',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -40,7 +40,7 @@ export default function GreenVision() {
       number: 219482,
       label: 'MtCO₂e'
     },
-    { 
+    {
       key: 'net',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -127,7 +127,7 @@ export default function GreenVision() {
           current = stat.number;
           clearInterval(timer);
         }
-        
+
         setCounts(prev => ({
           ...prev,
           [stat.key]: Math.floor(current).toLocaleString()
@@ -138,31 +138,32 @@ export default function GreenVision() {
 
   return (
     <section ref={sectionRef} className="bg-white">
-      {/* Title - Outside video section with Animation */}
-      <div 
-        ref={titleRef}
-        className="max-w-7xl mx-auto px-4 pt-16 pb-8"
-      >
-        <h2 className={`text-4xl lg:text-5xl font-bold transition-all duration-1000 ${
-          titleInView 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 -translate-y-10'
-        }`}>
-          Green <span className="text-orange-500">Vision</span>
-        </h2>
+      <div className="max-w-7xl mx-auto">
+        {/* Title - Outside video section with Animation - Centered */}
+        <div
+          ref={titleRef}
+          className="px-16 pt-16 pb-8 text-center"
+        >
+          <h2 className={`text-4xl lg:text-5xl font-bold transition-all duration-1000 ${titleInView
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-y-10'
+            }`}>
+            Green <span className="text-orange-500">Vision</span>
+          </h2>
+        </div>
       </div>
 
       {/* Video Section with Animation */}
-      <div 
+      <div
         ref={videoRef}
         className="relative min-h-[100vh] flex items-end overflow-hidden"
       >
+        {/* Rest of your code... */}
         {/* Video Background with Fade and Scale */}
-        <div className={`absolute inset-0 transition-all duration-1500 ${
-          videoInView 
-            ? 'opacity-100 scale-100' 
+        <div className={`absolute inset-0 transition-all duration-1500 ${videoInView
+            ? 'opacity-100 scale-100'
             : 'opacity-0 scale-105'
-        }`}>
+          }`}>
           <video
             autoPlay
             loop
@@ -175,108 +176,109 @@ export default function GreenVision() {
         </div>
 
         {/* Dark Overlay with Fade */}
-        <div className={`absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-1500 ${
-          videoInView 
-            ? 'opacity-100' 
+        <div className={`absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-1500 ${videoInView
+            ? 'opacity-100'
             : 'opacity-0'
-        }`} />
+          }`} />
 
-        {/* Stats Container - Positioned at Bottom with Animation */}
+       {/* Stats Container - Positioned at Bottom with Animation */}
+<div 
+  ref={statsRef}
+  className="relative z-10 w-full pb-6 md:pb-12 px-2 md:px-4"
+>
+  <div className="flex justify-center">
+    <div className={`bg-black bg-opacity-40 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-6 inline-flex flex-row gap-2 md:gap-6 w-full md:w-auto max-w-full transition-all duration-1000 ${
+      statsInView 
+        ? 'opacity-100 translate-y-0 scale-100' 
+        : 'opacity-0 translate-y-10 scale-90'
+    }`}>
+      {stats.map((stat, index) => (
         <div 
-          ref={statsRef}
-          className="relative z-10 w-full pb-12"
+          key={index} 
+          className={`flex flex-col items-center text-center flex-1 md:min-w-[160px] rounded-lg md:rounded-xl p-2 md:p-4 cursor-pointer group ${
+            statsInView 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+          style={{ 
+            transition: statsInView ? 'opacity 0.7s, transform 0.7s' : 'opacity 0.3s, transform 0.3s, background-color 0.3s, scale 0.3s',
+            transitionDelay: statsInView ? `${index * 200}ms` : '0ms' 
+          }}
         >
-          <div className="flex justify-center">
-            <div className={`bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 inline-flex gap-6 transition-all duration-1000 ${
+          {/* Card hover effect - separate div for faster hover transition */}
+          <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 group-hover:scale-110" />
+
+          {/* Icon with Rotation Animation */}
+          <div 
+            className={`relative bg-white bg-opacity-20 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 mb-1 md:mb-3 ${
               statsInView 
-                ? 'opacity-100 translate-y-0 scale-100' 
-                : 'opacity-0 translate-y-10 scale-90'
-            }`}>
-              {stats.map((stat, index) => (
-                <div 
-                  key={index} 
-                  className={`flex flex-col items-center text-center min-w-[160px] rounded-xl p-4 cursor-pointer group ${
-                    statsInView 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-10'
-                  }`}
-                  style={{ 
-                    transition: statsInView ? 'opacity 0.7s, transform 0.7s' : 'opacity 0.3s, transform 0.3s, background-color 0.3s, scale 0.3s',
-                    transitionDelay: statsInView ? `${index * 200}ms` : '0ms' 
-                  }}
-                >
-                  {/* Card hover effect - separate div for faster hover transition */}
-                  <div className="absolute inset-0 rounded-xl bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 group-hover:scale-110" />
-
-                  {/* Icon with Rotation Animation */}
-                  <div 
-                    className={`relative bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-3 mb-3 ${
-                      statsInView 
-                        ? 'opacity-100 rotate-0 scale-100' 
-                        : 'opacity-0 rotate-180 scale-50'
-                    }`}
-                    style={{ 
-                      transition: statsInView ? 'all 0.7s' : 'all 0.3s',
-                      transitionDelay: statsInView ? `${index * 200 + 200}ms` : '0ms' 
-                    }}
-                  >
-                    {/* Icon background hover - faster transition */}
-                    <div className="absolute inset-0 rounded-xl bg-transparent group-hover:bg-orange-500 transition-all duration-300 group-hover:scale-110" />
-                    <div className="relative text-white">
-                      {stat.icon}
-                    </div>
-                  </div>
-
-                  {/* Title with Slide Animation */}
-                  <h3 
-                    className={`relative text-white font-semibold text-xs mb-2 tracking-wide group-hover:text-orange-300 ${
-                      statsInView 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 -translate-x-5'
-                    }`}
-                    style={{ 
-                      transition: statsInView ? 'all 0.7s' : 'color 0.3s, opacity 0.3s, transform 0.3s',
-                      transitionDelay: statsInView ? `${index * 200 + 300}ms` : '0ms' 
-                    }}
-                  >
-                    {stat.title}
-                  </h3>
-
-                  {/* Number with Scale Animation - FIXED HOVER */}
-                  <p 
-                    className={`relative text-white text-3xl font-bold mb-1 group-hover:text-orange-400 group-hover:scale-110 ${
-                      statsInView 
-                        ? 'opacity-100 scale-100' 
-                        : 'opacity-0 scale-50'
-                    }`}
-                    style={{ 
-                      transition: statsInView ? 'all 0.7s' : 'color 0.3s, transform 0.3s',
-                      transitionDelay: statsInView ? `${index * 200 + 400}ms` : '0ms' 
-                    }}
-                  >
-                    {counts[stat.key] || '0'}
-                  </p>
-
-                  {/* Label with Fade Animation - FIXED HOVER */}
-                  <p 
-                    className={`relative text-white text-xs opacity-80 group-hover:opacity-100 ${
-                      statsInView 
-                        ? '' 
-                        : 'opacity-0'
-                    }`}
-                    style={{ 
-                      transition: statsInView ? `opacity 0.7s` : 'opacity 0.3s',
-                      transitionDelay: statsInView ? `${index * 200 + 500}ms` : '0ms',
-                      opacity: !statsInView ? 0 : undefined
-                    }}
-                  >
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+                ? 'opacity-100 rotate-0 scale-100' 
+                : 'opacity-0 rotate-180 scale-50'
+            }`}
+            style={{ 
+              transition: statsInView ? 'all 0.7s' : 'all 0.3s',
+              transitionDelay: statsInView ? `${index * 200 + 200}ms` : '0ms' 
+            }}
+          >
+            {/* Icon background hover - faster transition */}
+            <div className="absolute inset-0 rounded-lg md:rounded-xl bg-transparent group-hover:bg-orange-500 transition-all duration-300 group-hover:scale-110" />
+            <div className="relative text-white">
+              <div className="w-4 h-4 md:w-6 md:h-6">
+                {stat.icon}
+              </div>
             </div>
           </div>
+
+          {/* Title with Slide Animation */}
+          <h3 
+            className={`relative text-white font-semibold text-[8px] md:text-xs mb-1 md:mb-2 tracking-wide group-hover:text-orange-300 ${
+              statsInView 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-5'
+            }`}
+            style={{ 
+              transition: statsInView ? 'all 0.7s' : 'color 0.3s, opacity 0.3s, transform 0.3s',
+              transitionDelay: statsInView ? `${index * 200 + 300}ms` : '0ms' 
+            }}
+          >
+            {stat.title}
+          </h3>
+
+          {/* Number with Scale Animation */}
+          <p 
+            className={`relative text-white text-lg md:text-3xl font-bold mb-0.5 md:mb-1 group-hover:text-orange-400 group-hover:scale-110 ${
+              statsInView 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-50'
+            }`}
+            style={{ 
+              transition: statsInView ? 'all 0.7s' : 'color 0.3s, transform 0.3s',
+              transitionDelay: statsInView ? `${index * 200 + 400}ms` : '0ms' 
+            }}
+          >
+            {counts[stat.key] || '0'}
+          </p>
+
+          {/* Label with Fade Animation */}
+          <p 
+            className={`relative text-white text-[8px] md:text-xs opacity-80 group-hover:opacity-100 ${
+              statsInView 
+                ? '' 
+                : 'opacity-0'
+            }`}
+            style={{ 
+              transition: statsInView ? `opacity 0.7s` : 'opacity 0.3s',
+              transitionDelay: statsInView ? `${index * 200 + 500}ms` : '0ms',
+              opacity: !statsInView ? 0 : undefined
+            }}
+          >
+            {stat.label}
+          </p>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

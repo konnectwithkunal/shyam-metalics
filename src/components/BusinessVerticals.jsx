@@ -58,13 +58,13 @@ export default function BusinessVerticals() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 px-6 md:px-12 lg:px-36 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
+      className="py-20 px-6 md:px-12 lg:px-32 xl:px-8 2xl:px-0 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
     >
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 rounded-full blur-3xl opacity-20 -z-10" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20 -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full mx-auto">
         {/* Enhanced Header with Animation */}
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
