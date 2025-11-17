@@ -129,15 +129,18 @@ export default function Header() {
                       className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-800 hover:text-orange-600 transition-colors"
                     >
                       {/* ✅ Only change: SELTIGER shows tiger logo instead of emoji */}
-                      {item.name === 'SELTIGER' ? (
-                        <img
-                          src="/tiger.png"
-                          alt="SelTiger Logo"
-                          className="h-4 w-auto mr-1 object-contain"
-                        />
-                      ) : (
-                        item.icon && <span className="mr-1">{item.icon}</span>
-                      )}
+                    {item.name === 'SELTIGER' ? (
+  <img
+    src="/tiger.png"
+    alt="SelTiger Logo"
+    className="h-4 w-auto mr-1 object-contain"
+    style={{
+      filter: isScrolled ? 'brightness(0) saturate(100%)' : 'none'
+    }}
+  />
+) : (
+  item.icon && <span className="mr-1">{item.icon}</span>
+)}
                       {item.name}
                       {item.hasDropdown && (
                         <ChevronDown className="w-4 h-4" />
