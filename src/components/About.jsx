@@ -101,10 +101,10 @@ export default function About() {
   };
 
   return (
-    <section className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
+    <section className="py-16 px-4 lg:px-16 bg-white">
+      <div className="max-w-7xl mx-auto">
         {/* Vision, Mission, Values Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-stretch">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 items-stretch">
 
           {cards.map((card, index) => (
             // OUTER: scroll / entrance only
@@ -120,9 +120,11 @@ export default function About() {
               {/* INNER: hover only */}
              <div className="
   bg-white rounded-3xl border-2 border-orange-500
-  p-10 pt-12 pb-14
+  p-6 md:p-8 lg:p-6 xl:p-10
+  pt-8 md:pt-10 lg:pt-8 xl:pt-12
+  pb-10 md:pb-12 lg:pb-10 xl:pb-14
   flex flex-col items-center text-center
-  h-full           
+  h-full
   transition-all duration-150 hover:scale-[1.02] hover:shadow-xl
 ">
 
@@ -136,12 +138,12 @@ export default function About() {
                     transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms'
                   }}
                 >
-                  <card.icon className="w-16 h-16 text-orange-500" strokeWidth={2} />
+                  <card.icon className="w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 text-orange-500" strokeWidth={2} />
                 </div>
 
                 {/* Title Badge with slide animation */}
                 <div
-                  className="bg-orange-500 text-white px-8 py-3 rounded-2xl mb-6 shadow-md"
+                  className="bg-orange-500 text-white px-6 py-2 lg:px-6 lg:py-2 xl:px-8 xl:py-3 rounded-2xl mb-4 lg:mb-5 xl:mb-6 shadow-md"
                   style={{
                     opacity: cardsInView ? 1 : 0,
                     transform: cardsInView ? 'scale(1)' : 'scale(0.75)',
@@ -149,12 +151,12 @@ export default function About() {
                     transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms'
                   }}
                 >
-                  <h3 className="text-xl font-bold">{card.title}</h3>
+                  <h3 className="text-lg lg:text-lg xl:text-xl font-bold">{card.title}</h3>
                 </div>
 
                 {/* Content with fade animation */}
                 <p
-                  className="text-gray-800 text-base leading-relaxed"
+                  className="text-gray-800 text-sm lg:text-sm xl:text-base leading-relaxed"
                   style={{
                     opacity: cardsInView ? 1 : 0,
                     transition: 'opacity 0.7s',

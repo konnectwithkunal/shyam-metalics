@@ -73,8 +73,8 @@ export default function ProductsGrid() {
   }, [activeTab, sectionInView]);
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
+    <section ref={sectionRef} className="py-16 px-4 lg:px-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <h2 className="text-3xl lg:text-4xl font-bold mb-8">
           Integrated <span className="text-orange-500">Steel Solutions</span>
