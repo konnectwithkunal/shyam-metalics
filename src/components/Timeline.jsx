@@ -7,14 +7,14 @@ export default function Timeline() {
   const [isPaused, setIsPaused] = useState(false);
   const [headerInView, setHeaderInView] = useState(false);
   const [timelineInView, setTimelineInView] = useState(false);
-  
+
   const headerRef = useRef(null);
   const timelineRef = useRef(null);
 
   const timelineData = [
-    { 
-      year: '1991', 
-      title: 'The Beginning of a Legacy', 
+    {
+      year: '1991',
+      title: 'The Beginning of a Legacy',
       description: 'Mangalpur Plant:',
       image: '/about1.jpg',
       details: [
@@ -23,9 +23,9 @@ export default function Timeline() {
         'Detail point 3 for 1991'
       ]
     },
-    { 
-      year: '2002', 
-      title: 'The First Spark', 
+    {
+      year: '2002',
+      title: 'The First Spark',
       description: 'Mangalpur Plant:',
       image: '/about2.jpg',
       details: [
@@ -34,9 +34,9 @@ export default function Timeline() {
         'Detail point 3 for 2002'
       ]
     },
-    { 
-      year: '2013', 
-      title: 'Building the Foundation', 
+    {
+      year: '2013',
+      title: 'Building the Foundation',
       description: 'Sambalpur Plant:',
       image: '/about3.jpg',
       details: [
@@ -46,9 +46,9 @@ export default function Timeline() {
         'Started production of Sponge Iron, Iron Pellets, and Billets (0.6 MTPA)'
       ]
     },
-    { 
-      year: '2014', 
-      title: 'Integrating Strength', 
+    {
+      year: '2014',
+      title: 'Integrating Strength',
       description: 'Sambalpur Plant:',
       image: '/about4.jpg',
       details: [
@@ -57,9 +57,9 @@ export default function Timeline() {
         'Detail point 3 for 2014'
       ]
     },
-    { 
-      year: '2015', 
-      title: 'Infrastructure in Motion', 
+    {
+      year: '2015',
+      title: 'Infrastructure in Motion',
       description: 'Sambalpur Plant:',
       image: '/about5.jpg',
       details: [
@@ -68,9 +68,9 @@ export default function Timeline() {
         'Detail point 3 for 2015'
       ]
     },
-    { 
-      year: '2019', 
-      title: 'Strengthening the Core', 
+    {
+      year: '2019',
+      title: 'Strengthening the Core',
       description: 'Sambalpur Plant:',
       image: '/about6.jpg',
       details: [
@@ -79,9 +79,9 @@ export default function Timeline() {
         'Detail point 3 for 2019'
       ]
     },
-    { 
-      year: '2021', 
-      title: 'Emerging Stronger', 
+    {
+      year: '2021',
+      title: 'Emerging Stronger',
       description: 'Expanded TMT & Wire Rod capacities',
       image: '/about1.jpg',
       details: [
@@ -90,9 +90,9 @@ export default function Timeline() {
         'Detail point 3 for 2021'
       ]
     },
-    { 
-      year: '2022', 
-      title: 'Diversifying the Future', 
+    {
+      year: '2022',
+      title: 'Diversifying the Future',
       description: 'TMT Bar capacity touched 1.17 MTPA',
       image: '/about2.jpg',
       details: [
@@ -101,9 +101,9 @@ export default function Timeline() {
         'Detail point 3 for 2022'
       ]
     },
-    { 
-      year: '2024', 
-      title: 'Leading with Purpose', 
+    {
+      year: '2024',
+      title: 'Leading with Purpose',
       description: 'Forayed into Food Grade Aluminium Foils',
       image: '/about3.jpg',
       details: [
@@ -112,9 +112,9 @@ export default function Timeline() {
         'Detail point 3 for 2024'
       ]
     },
-    { 
-      year: '2025', 
-      title: 'Scaling with Next-Gen Transformation', 
+    {
+      year: '2025',
+      title: 'Scaling with Next-Gen Transformation',
       description: 'Sambalpur Plant:',
       image: '/about4.jpg',
       details: [
@@ -166,7 +166,7 @@ export default function Timeline() {
   // Auto-cycle through years every 3 seconds - only when not paused
   useEffect(() => {
     if (isPaused) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % timelineData.length);
     }, 3000);
@@ -204,50 +204,46 @@ export default function Timeline() {
   return (
     <section className="pt-16 bg-white overflow-visible">
       {/* Header with Animation */}
-      <div 
+      <div
         ref={headerRef}
-        className={`text-center mb-8 px-4 transition-all duration-1000 ${
-          headerInView 
-            ? 'opacity-100 translate-y-0' 
+        className={`text-center mb-8 px-4 transition-all duration-1000 ${headerInView
+            ? 'opacity-100 translate-y-0'
             : 'opacity-0 -translate-y-10'
-        }`}
+          }`}
       >
         <h1 className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
           The Shyam <span className="text-orange-600">Journey</span>
         </h1>
-        <p className={`text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${
-          headerInView 
-            ? 'opacity-100 translate-y-0' 
+        <p className={`text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${headerInView
+            ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-5'
-        }`}
-        style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}>
+          }`}
+          style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}>
           A timeline of innovation, growth, and excellence in the steel and metals industry
         </p>
       </div>
 
       {/* Timeline Container - Full Width with Animation */}
-      <div 
+      <div
         ref={timelineRef}
-        className={`relative w-full py-52 overflow-hidden bg-white transition-all duration-1200 ${
-          timelineInView 
-            ? 'opacity-100 scale-100' 
+        className={`relative w-full py-52 overflow-hidden bg-white transition-all duration-1200 ${timelineInView
+            ? 'opacity-100 scale-100'
             : 'opacity-0 scale-95'
-        }`}
-        style={{ 
-          backgroundImage: 'url(/timeline.jpg)', 
-          backgroundSize: 'cover', 
-          backgroundPosition: 'center', 
+          }`}
+        style={{
+          backgroundImage: 'url(/timeline.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           transitionDelay: timelineInView ? '400ms' : '0ms'
         }}
       >
         {/* Wave Line SVG - Scrolling with separate speed */}
-        <div className={`absolute top-1/2 left-0 -translate-y-1/2 z-0 pointer-events-none w-full transition-all duration-1000 ${
-          timelineInView 
-            ? 'opacity-100 scale-x-100' 
+        <div className={`absolute top-1/2 left-0 -translate-y-1/2 z-0 pointer-events-none w-full transition-all duration-1000 ${timelineInView
+            ? 'opacity-100 scale-x-100'
             : 'opacity-0 scale-x-75'
-        }`}
-        style={{ transitionDelay: timelineInView ? '600ms' : '0ms' }}>
+          }`}
+          style={{ transitionDelay: timelineInView ? '600ms' : '0ms' }}>
           <div
             className="animate-scroll-infinite flex"
             style={{
@@ -299,13 +295,12 @@ export default function Timeline() {
         </div>
 
         {/* Infinite Scrolling Timeline with Staggered Year Animations */}
-        <div className={`relative z-10 transition-opacity duration-1000 ${
-          timelineInView ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ transitionDelay: timelineInView ? '800ms' : '0ms' }}>
+        <div className={`relative z-10 transition-opacity duration-1000 ${timelineInView ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ transitionDelay: timelineInView ? '800ms' : '0ms' }}>
           <div
             className="flex items-center gap-20 animate-scroll-infinite"
-            style={{ 
+            style={{
               animationDuration: timelineSpeed,
               animationPlayState: isPaused || !timelineInView ? 'paused' : 'running'
             }}
@@ -318,23 +313,26 @@ export default function Timeline() {
               const showCard = (isActive && !isPaused) || isHovered;
 
               return (
-                <div 
-                  key={`${item.year}-${index}`} 
-                  className={`flex flex-col items-center relative flex-shrink-0 transition-all duration-700 ${
-                    timelineInView 
-                      ? 'opacity-100 translate-y-0 scale-100' 
+                <div
+                  key={`${item.year}-${index}`}
+                  className={`flex flex-col items-center relative flex-shrink-0 transition-all duration-700 ${timelineInView
+                      ? 'opacity-100 translate-y-0 scale-100'
                       : 'opacity-0 translate-y-10 scale-75'
-                  }`}
-                  style={{ 
-                    transitionDelay: timelineInView ? `${1000 + (originalIndex * 100)}ms` : '0ms' 
+                    }`}
+                  style={{
+                    transitionDelay: timelineInView ? `${1000 + (originalIndex * 100)}ms` : '0ms'
                   }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
                 >
                   {/* Card - Above for orange, Below for black with different gaps */}
+                  {/* Card - Above for orange, Below for black with different gaps */}
                   {showCard && (
-                    <div className={`absolute ${orangeYear ? `bottom-full ${orangeCardGap}` : `top-full ${blackCardGap}`} w-72 animate-cardFadeIn z-50`}>
-                      <div className="bg-white rounded-2xl shadow-xl p-4">
+                    <div
+                      className={`absolute ${orangeYear ? `bottom-full ${orangeCardGap}` : `top-full ${blackCardGap}`} w-72 animate-cardFadeIn z-50 cursor-pointer`}
+                      onClick={() => handleYearClick(item)}
+                    >
+                      <div className="bg-white rounded-2xl shadow-xl p-4 transition-all duration-300 hover:shadow-2xl hover:scale-105">
                         <h3 className="text-lg font-bold mb-2 text-gray-900">{item.year}</h3>
                         <h4 className="text-lg font-semibold mb-2 text-gray-900">{item.title}</h4>
                         <p className="text-gray-600 text-sm">{item.description}</p>
@@ -354,9 +352,8 @@ export default function Timeline() {
                     {/* Year Circle - Now clickable and hoverable */}
                     <div
                       onClick={() => handleYearClick(item)}
-                      className={`relative ${getYearColor(originalIndex)} text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-base shadow-lg z-10 transition-all duration-300 cursor-pointer hover:scale-105 ${
-                        (isActive && !isPaused) || isHovered ? 'scale-110 ring-4 ring-white ring-opacity-50' : ''
-                      }`}
+                      className={`relative ${getYearColor(originalIndex)} text-white w-14 h-14 rounded-full flex items-center justify-center font-bold text-base shadow-lg z-10 transition-all duration-300 cursor-pointer hover:scale-105 ${(isActive && !isPaused) || isHovered ? 'scale-110 ring-4 ring-white ring-opacity-50' : ''
+                        }`}
                     >
                       {item.year}
                     </div>
@@ -364,9 +361,8 @@ export default function Timeline() {
 
                   {/* Title - Below for orange, Above for black */}
                   <div className={`absolute ${orangeYear ? `top-full ${orangeTitleGap}` : `bottom-full ${blackTitleGap}`} text-center w-40`}>
-                    <p className={`text-xs font-semibold leading-tight transition-colors ${
-                      (isActive && !isPaused) || isHovered ? 'text-gray-900' : 'text-gray-800'
-                    }`}>
+                    <p className={`text-xs font-semibold leading-tight transition-colors ${(isActive && !isPaused) || isHovered ? 'text-gray-900' : 'text-gray-800'
+                      }`}>
                       {item.title}
                     </p>
                   </div>
@@ -387,7 +383,7 @@ export default function Timeline() {
                 <h2 className="text-4xl font-bold text-gray-900 mb-2">{selectedYear.year}</h2>
                 <h3 className="text-xl font-semibold text-gray-800">{selectedYear.title}</h3>
               </div>
-              <button 
+              <button
                 onClick={closePopup}
                 className="text-gray-400 hover:text-gray-600 transition-colors"
               >
@@ -401,8 +397,8 @@ export default function Timeline() {
             <div className="p-6">
               {/* Image */}
               {selectedYear.image && (
-                <img 
-                  src={selectedYear.image} 
+                <img
+                  src={selectedYear.image}
                   alt={selectedYear.title}
                   className="w-full h-64 object-cover rounded-2xl mb-6"
                 />
