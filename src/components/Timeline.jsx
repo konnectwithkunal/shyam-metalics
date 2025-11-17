@@ -202,7 +202,7 @@ export default function Timeline() {
   };
 
   return (
-    <section className="pt-16 bg-white overflow-visible">
+    <section className="pt-16 bg-white overflow-x-hidden">
       {/* Header with Animation */}
       <div
         ref={headerRef}
@@ -418,7 +418,7 @@ export default function Timeline() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes scroll-infinite {
           0% {
             transform: translateX(0);
