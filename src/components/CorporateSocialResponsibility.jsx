@@ -337,8 +337,8 @@ export default function CorporateSocialResponsibility() {
                     }}
                   >
                     <div className="flex flex-col items-center text-center space-y-2 md:space-y-3 p-2 md:p-3 rounded-lg md:rounded-xl cursor-pointer group hover:shadow-xl hover:scale-105 hover:bg-orange-50/50 transition-all duration-150">
-                      <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shadow-sm group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-lg group-hover:scale-110 transition-all duration-150">
-                        <div className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex items-center justify-center">
+                      <div className="w-16 h-16 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shadow-sm group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-lg group-hover:scale-110 transition-all duration-150">
+                        <div className="w-12 h-12 md:w-5 md:h-5 lg:w-6 lg:h-6 flex items-center justify-center">
                           {cat.icon}
                         </div>
                       </div>
