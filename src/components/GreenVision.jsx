@@ -8,7 +8,14 @@ export default function GreenVision() {
   });
   
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [titleInView, setTitleInView] = useState(false);
+  const [videoInView, setVideoInView] = useState(false);
+  const [statsInView, setStatsInView] = useState(false);
+  
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const videoRef = useRef(null);
+  const statsRef = useRef(null);
 
   const stats = [
     { 
@@ -45,6 +52,42 @@ export default function GreenVision() {
       label: 'MtCO₂e'
     }
   ];
+
+  // Intersection Observers for entrance animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const titleObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setTitleInView(true);
+      }
+    }, observerOptions);
+
+    const videoObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVideoInView(true);
+      }
+    }, observerOptions);
+
+    const statsObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setStatsInView(true);
+      }
+    }, { threshold: 0.5 });
+
+    if (titleRef.current) titleObserver.observe(titleRef.current);
+    if (videoRef.current) videoObserver.observe(videoRef.current);
+    if (statsRef.current) statsObserver.observe(statsRef.current);
+
+    return () => {
+      if (titleRef.current) titleObserver.unobserve(titleRef.current);
+      if (videoRef.current) videoObserver.unobserve(videoRef.current);
+      if (statsRef.current) statsObserver.unobserve(statsRef.current);
+    };
+  }, []);
 
   // Counter animation effect
   useEffect(() => {
@@ -95,57 +138,138 @@ export default function GreenVision() {
 
   return (
     <section ref={sectionRef} className="bg-white">
-      {/* Title - Outside video section */}
-      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8">
-        <h2 className="text-4xl lg:text-5xl font-bold">
+      {/* Title - Outside video section with Animation */}
+      <div 
+        ref={titleRef}
+        className="max-w-7xl mx-auto px-4 pt-16 pb-8"
+      >
+        <h2 className={`text-4xl lg:text-5xl font-bold transition-all duration-1000 ${
+          titleInView 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-10'
+        }`}>
           Green <span className="text-orange-500">Vision</span>
         </h2>
       </div>
 
-      {/* Video Section */}
-      <div className="relative min-h-[100vh] flex items-end overflow-hidden">
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+      {/* Video Section with Animation */}
+      <div 
+        ref={videoRef}
+        className="relative min-h-[100vh] flex items-end overflow-hidden"
+      >
+        {/* Video Background with Fade and Scale */}
+        <div className={`absolute inset-0 transition-all duration-1500 ${
+          videoInView 
+            ? 'opacity-100 scale-100' 
+            : 'opacity-0 scale-105'
+        }`}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/environment.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Dark Overlay with Fade */}
+        <div className={`absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-1500 ${
+          videoInView 
+            ? 'opacity-100' 
+            : 'opacity-0'
+        }`} />
+
+        {/* Stats Container - Positioned at Bottom with Animation */}
+        <div 
+          ref={statsRef}
+          className="relative z-10 w-full pb-12"
         >
-          <source src="/environment.mp4" type="video/mp4" />
-        </video>
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
-
-        {/* Stats Container - Positioned at Bottom - Smaller with Hover Effects */}
-        <div className="relative z-10 w-full pb-12">
           <div className="flex justify-center">
-            <div className="bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 inline-flex gap-6">
+            <div className={`bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 inline-flex gap-6 transition-all duration-1000 ${
+              statsInView 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-10 scale-90'
+            }`}>
               {stats.map((stat, index) => (
                 <div 
                   key={index} 
-                  className="flex flex-col items-center text-center min-w-[160px] transition-all duration-300 hover:scale-110 hover:bg-white hover:bg-opacity-10 rounded-xl p-4 cursor-pointer group"
+                  className={`flex flex-col items-center text-center min-w-[160px] rounded-xl p-4 cursor-pointer group ${
+                    statsInView 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ 
+                    transition: statsInView ? 'opacity 0.7s, transform 0.7s' : 'opacity 0.3s, transform 0.3s, background-color 0.3s, scale 0.3s',
+                    transitionDelay: statsInView ? `${index * 200}ms` : '0ms' 
+                  }}
                 >
-                  {/* Icon */}
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-3 mb-3 transition-all duration-300 group-hover:bg-orange-500 group-hover:scale-110">
-                    <div className="text-white">
+                  {/* Card hover effect - separate div for faster hover transition */}
+                  <div className="absolute inset-0 rounded-xl bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 group-hover:scale-110" />
+
+                  {/* Icon with Rotation Animation */}
+                  <div 
+                    className={`relative bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-3 mb-3 ${
+                      statsInView 
+                        ? 'opacity-100 rotate-0 scale-100' 
+                        : 'opacity-0 rotate-180 scale-50'
+                    }`}
+                    style={{ 
+                      transition: statsInView ? 'all 0.7s' : 'all 0.3s',
+                      transitionDelay: statsInView ? `${index * 200 + 200}ms` : '0ms' 
+                    }}
+                  >
+                    {/* Icon background hover - faster transition */}
+                    <div className="absolute inset-0 rounded-xl bg-transparent group-hover:bg-orange-500 transition-all duration-300 group-hover:scale-110" />
+                    <div className="relative text-white">
                       {stat.icon}
                     </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-white font-semibold text-xs mb-2 tracking-wide transition-colors duration-300 group-hover:text-orange-300">
+                  {/* Title with Slide Animation */}
+                  <h3 
+                    className={`relative text-white font-semibold text-xs mb-2 tracking-wide group-hover:text-orange-300 ${
+                      statsInView 
+                        ? 'opacity-100 translate-x-0' 
+                        : 'opacity-0 -translate-x-5'
+                    }`}
+                    style={{ 
+                      transition: statsInView ? 'all 0.7s' : 'color 0.3s, opacity 0.3s, transform 0.3s',
+                      transitionDelay: statsInView ? `${index * 200 + 300}ms` : '0ms' 
+                    }}
+                  >
                     {stat.title}
                   </h3>
 
-                  {/* Number */}
-                  <p className="text-white text-3xl font-bold mb-1 transition-all duration-300 group-hover:text-orange-400">
+                  {/* Number with Scale Animation - FIXED HOVER */}
+                  <p 
+                    className={`relative text-white text-3xl font-bold mb-1 group-hover:text-orange-400 group-hover:scale-110 ${
+                      statsInView 
+                        ? 'opacity-100 scale-100' 
+                        : 'opacity-0 scale-50'
+                    }`}
+                    style={{ 
+                      transition: statsInView ? 'all 0.7s' : 'color 0.3s, transform 0.3s',
+                      transitionDelay: statsInView ? `${index * 200 + 400}ms` : '0ms' 
+                    }}
+                  >
                     {counts[stat.key] || '0'}
                   </p>
 
-                  {/* Label */}
-                  <p className="text-white text-xs opacity-80 transition-opacity duration-300 group-hover:opacity-100">
+                  {/* Label with Fade Animation - FIXED HOVER */}
+                  <p 
+                    className={`relative text-white text-xs opacity-80 group-hover:opacity-100 ${
+                      statsInView 
+                        ? '' 
+                        : 'opacity-0'
+                    }`}
+                    style={{ 
+                      transition: statsInView ? `opacity 0.7s` : 'opacity 0.3s',
+                      transitionDelay: statsInView ? `${index * 200 + 500}ms` : '0ms',
+                      opacity: !statsInView ? 0 : undefined
+                    }}
+                  >
                     {stat.label}
                   </p>
                 </div>

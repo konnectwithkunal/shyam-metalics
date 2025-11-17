@@ -9,6 +9,13 @@ import GlobalPresence from '../components/GlobalPresence'
 import GreenVision from '../components/GreenVision'
 import CorporateSocialResponsibility from '../components/CorporateSocialResponsibility'
 import Testimonials from '../components/Testimonials'
+import Awards from '../components/Awards'
+import Clients from '../components/Clients'
+import LatestNews from '../components/LatestNews'
+import SharePrice from '../components/SharePrice'
+import FixedImgHome from '../components/FixedImgHome'
+
+
 
 export default function HomePage() {
   return (
@@ -22,7 +29,12 @@ export default function HomePage() {
       <GlobalPresence />
       <GreenVision />
       <CorporateSocialResponsibility />
+      <Awards />
       <Testimonials />
+      <Clients/>
+      <LatestNews />
+      <SharePrice />
+      <FixedImgHome />
     </>
   )
 }

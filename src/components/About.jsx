@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Eye, Target, Heart, ChevronLeft, ChevronRight, Flame, Factory, Users, MessageSquare, Globe, Leaf } from 'lucide-react';
 
 export default function About() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [cardsInView, setCardsInView] = useState(false);
+  const [overviewInView, setOverviewInView] = useState(false);
+  const [highlightsInView, setHighlightsInView] = useState(false);
+  
+  const cardsRef = useRef(null);
+  const overviewRef = useRef(null);
+  const highlightsRef = useRef(null);
   
   const cards = [
     {
@@ -23,9 +30,12 @@ export default function About() {
   ];
 
   const slides = [
-    '/factory1.jpg',
-    '/factory2.jpg',
-    '/factory3.jpg'
+    '/about1.jpg',
+    '/about2.jpg',
+    '/about3.jpg',
+    '/about4.jpg',
+    '/about5.jpg',
+    '/about6.jpg'
   ];
 
   const highlights = [
@@ -36,6 +46,51 @@ export default function About() {
     { icon: Globe, title: 'Future-Ready & Globally Aligned' },
     { icon: Leaf, title: 'Driven by Sustainability & Governance' }
   ];
+
+  // Intersection Observers for entrance animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const cardsObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setCardsInView(true);
+      }
+    }, observerOptions);
+
+    const overviewObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setOverviewInView(true);
+      }
+    }, observerOptions);
+
+    const highlightsObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setHighlightsInView(true);
+      }
+    }, observerOptions);
+
+    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+    if (overviewRef.current) overviewObserver.observe(overviewRef.current);
+    if (highlightsRef.current) highlightsObserver.observe(highlightsRef.current);
+
+    return () => {
+      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+      if (overviewRef.current) overviewObserver.unobserve(overviewRef.current);
+      if (highlightsRef.current) highlightsObserver.unobserve(highlightsRef.current);
+    };
+  }, []);
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -49,24 +104,52 @@ export default function About() {
     <section className="py-12 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Vision, Mission, Values Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl border-2 border-orange-500 p-10 pt-12 pb-14 flex flex-col items-center text-center transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl"
+              className={`bg-white rounded-3xl border-2 border-orange-500 p-10 pt-12 pb-14 flex flex-col items-center text-center transition-all duration-700 hover:scale-[1.02] hover:shadow-xl ${
+                cardsInView 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-20'
+              }`}
+              style={{ 
+                transitionDelay: cardsInView ? `${index * 150}ms` : '0ms' 
+              }}
             >
-              {/* Icon */}
-              <div className="mb-6">
+              {/* Icon with rotation animation */}
+              <div className={`mb-6 transition-all duration-700 ${
+                cardsInView 
+                  ? 'opacity-100 rotate-0 scale-100' 
+                  : 'opacity-0 -rotate-45 scale-50'
+              }`}
+              style={{ 
+                transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms' 
+              }}>
                 <card.icon className="w-16 h-16 text-orange-500" strokeWidth={2} />
               </div>
 
-              {/* Title Badge */}
-              <div className="bg-orange-500 text-white px-8 py-3 rounded-2xl mb-6 shadow-md">
+              {/* Title Badge with slide animation */}
+              <div className={`bg-orange-500 text-white px-8 py-3 rounded-2xl mb-6 shadow-md transition-all duration-700 ${
+                cardsInView 
+                  ? 'opacity-100 scale-100' 
+                  : 'opacity-0 scale-75'
+              }`}
+              style={{ 
+                transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms' 
+              }}>
                 <h3 className="text-xl font-bold">{card.title}</h3>
               </div>
 
-              {/* Content */}
-              <p className="text-gray-800 text-base leading-relaxed">
+              {/* Content with fade animation */}
+              <p className={`text-gray-800 text-base leading-relaxed transition-all duration-700 ${
+                cardsInView 
+                  ? 'opacity-100' 
+                  : 'opacity-0'
+              }`}
+              style={{ 
+                transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms' 
+              }}>
                 {card.content}
               </p>
             </div>
@@ -74,65 +157,134 @@ export default function About() {
         </div>
 
         {/* Company Overview Section */}
-        <div className="max-w-7xl mx-auto px-8 mb-16">
+        <div ref={overviewRef} className="max-w-7xl mx-auto px-8 mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Side - Text Content */}
-            <div className="space-y-6">
+            <div className={`space-y-6 transition-all duration-1000 ${
+              overviewInView 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-10'
+            }`}>
               <h2 className="text-3xl md:text-4xl font-bold">
                 <span className="text-orange-500">Shyam Metalics:</span>{' '}
                 <span className="text-gray-900">India's Leading Integrated Metal Conglomerate</span>
               </h2>
               
-              <p className="text-gray-700 text-base leading-relaxed">
+              <p className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
+                overviewInView 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-5'
+              }`}
+              style={{ transitionDelay: overviewInView ? '200ms' : '0ms' }}>
                 Shyam Metalics is one of India's fastest-growing and most trusted integrated metal producers, with a diversified portfolio spanning carbon steel, stainless steel, ferro alloys, aluminium foil, and long steel products...
               </p>
               
-              <p className="text-gray-700 text-base leading-relaxed">
+              <p className={`text-gray-700 text-base leading-relaxed transition-all duration-700 ${
+                overviewInView 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-5'
+              }`}
+              style={{ transitionDelay: overviewInView ? '400ms' : '0ms' }}>
                 As a diversified metal conglomerate, Shyam Metalics operates with a fully integrated ore-to-metal manufacturing model, supported by 83% captive power generation and state-of-the-art facilities...
               </p>
               
-              <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center gap-2">
+              <button className={`bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-700 flex items-center gap-2 ${
+                overviewInView 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-5'
+              }`}
+              style={{ transitionDelay: overviewInView ? '600ms' : '0ms' }}>
                 Read More →
               </button>
             </div>
 
             {/* Right Side - Image Carousel */}
-            <div className="relative rounded-2xl overflow-hidden bg-gray-900 h-96">
-              {/* Carousel Image */}
-              <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
-                <span className="text-white text-lg">Factory Image {currentSlide + 1}</span>
+            <div className={`relative rounded-2xl overflow-hidden bg-gray-900 h-96 transition-all duration-1000 ${
+              overviewInView 
+                ? 'opacity-100 translate-x-0 scale-100' 
+                : 'opacity-0 translate-x-10 scale-95'
+            }`}
+            style={{ transitionDelay: overviewInView ? '300ms' : '0ms' }}>
+              {/* Carousel Images with Animation */}
+              <div className="relative w-full h-full">
+                {slides.map((slide, index) => (
+                  <img
+                    key={index}
+                    src={slide}
+                    alt={`Factory ${index + 1}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
+                      index === currentSlide
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-0 scale-105'
+                    }`}
+                  />
+                ))}
               </div>
-
+              
               {/* Navigation Buttons */}
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center transition-colors z-10"
               >
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center transition-colors z-10"
               >
                 <ChevronRight className="w-6 h-6 text-white" />
               </button>
+
+              {/* Slide Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      currentSlide === index ? 'bg-orange-500 w-6' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Highlights Section */}
-        <div className="max-w-7xl mx-auto px-8">
+        <div ref={highlightsRef} className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-lg px-3 py-7 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-300"
+                className={`bg-white border border-gray-200 rounded-lg px-3 py-7 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 hover:scale-105 transition-all duration-700 ${
+                  highlightsInView 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{ 
+                  transitionDelay: highlightsInView ? `${index * 100}ms` : '0ms' 
+                }}
               >
-                <div className="mb-2">
+                <div className={`mb-2 transition-all duration-700 ${
+                  highlightsInView 
+                    ? 'opacity-100 scale-100 rotate-0' 
+                    : 'opacity-0 scale-0 rotate-180'
+                }`}
+                style={{ 
+                  transitionDelay: highlightsInView ? `${index * 100 + 200}ms` : '0ms' 
+                }}>
                   <item.icon className="w-8 h-8 text-orange-500" strokeWidth={2} />
                 </div>
-                <h4 className="text-sm font-semibold text-gray-900 leading-tight">
+                <h4 className={`text-sm font-semibold text-gray-900 leading-tight transition-all duration-700 ${
+                  highlightsInView 
+                    ? 'opacity-100' 
+                    : 'opacity-0'
+                }`}
+                style={{ 
+                  transitionDelay: highlightsInView ? `${index * 100 + 300}ms` : '0ms' 
+                }}>
                   {item.title}
                 </h4>
               </div>

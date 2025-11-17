@@ -33,11 +33,26 @@ export default function Stats() {
 
   return (
     <section ref={sectionRef} className="max-w-6xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
+      {/* Container with scale and fade animation */}
+      <div className={`bg-white rounded-xl shadow-md p-6 md:p-8 transition-all duration-1000 ${
+        inView 
+          ? 'opacity-100 scale-100 translate-y-0' 
+          : 'opacity-0 scale-95 translate-y-10'
+      }`}>
         <div className="flex flex-col md:flex-row items-center justify-around gap-6">
           {stats.map((stat, index) => (
             <React.Fragment key={stat.label}>
-              <div className="text-center flex-1">
+              {/* Individual stat with staggered animation */}
+              <div 
+                className={`text-center flex-1 transition-all duration-700 ${
+                  inView 
+                    ? 'opacity-100 translate-x-0' 
+                    : 'opacity-0 -translate-x-10'
+                }`}
+                style={{ 
+                  transitionDelay: inView ? `${index * 200 + 300}ms` : '0ms' 
+                }}
+              >
                 <div className="text-gray-700 font-semibold text-base leading-5 mb-3">
                   {stat.label}
                 </div>
@@ -47,12 +62,18 @@ export default function Stats() {
                     suffix={stat.suffix}
                     decimals={stat.decimals}
                     isActive={inView}
+                    delay={index * 200 + 300}
                   />
                 </div>
               </div>
-              {/* Divider - show only between items, not after last one */}
+              {/* Divider with fade animation */}
               {index < stats.length - 1 && (
-                <div className="hidden md:flex items-center justify-center">
+                <div className={`hidden md:flex items-center justify-center transition-all duration-700 ${
+                  inView ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'
+                }`}
+                style={{ 
+                  transitionDelay: inView ? `${index * 200 + 500}ms` : '0ms' 
+                }}>
                   <div className="w-px h-16 bg-orange-400"></div>
                 </div>
               )}
@@ -64,11 +85,23 @@ export default function Stats() {
   );
 }
 
-function AnimatedNumber({ value, suffix, decimals, isActive }) {
+function AnimatedNumber({ value, suffix, decimals, isActive, delay = 0 }) {
   const [displayValue, setDisplayValue] = useState(0);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     if (!isActive) return;
+
+    // Wait for the delay before starting animation
+    const startTimer = setTimeout(() => {
+      setStarted(true);
+    }, delay);
+
+    return () => clearTimeout(startTimer);
+  }, [isActive, delay]);
+
+  useEffect(() => {
+    if (!started) return;
 
     const duration = 2000; // 2 seconds
     const steps = 60;
@@ -88,7 +121,7 @@ function AnimatedNumber({ value, suffix, decimals, isActive }) {
     }, duration / steps);
 
     return () => clearInterval(timer);
-  }, [isActive, value]);
+  }, [started, value]);
 
   const formattedValue = decimals > 0 
     ? displayValue.toFixed(decimals)

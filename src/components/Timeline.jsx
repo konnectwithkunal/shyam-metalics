@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Timeline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedYear, setSelectedYear] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [headerInView, setHeaderInView] = useState(false);
+  const [timelineInView, setTimelineInView] = useState(false);
+  
+  const headerRef = useRef(null);
+  const timelineRef = useRef(null);
 
   const timelineData = [
     { 
       year: '1991', 
       title: 'The Beginning of a Legacy', 
       description: 'Mangalpur Plant:',
-      image: '/timeline-images/1991.jpg',
+      image: '/about1.jpg',
       details: [
         'Detail point 1 for 1991',
         'Detail point 2 for 1991',
@@ -22,7 +27,7 @@ export default function Timeline() {
       year: '2002', 
       title: 'The First Spark', 
       description: 'Mangalpur Plant:',
-      image: '/timeline-images/2002.jpg',
+      image: '/about2.jpg',
       details: [
         'Detail point 1 for 2002',
         'Detail point 2 for 2002',
@@ -33,7 +38,7 @@ export default function Timeline() {
       year: '2013', 
       title: 'Building the Foundation', 
       description: 'Sambalpur Plant:',
-      image: '/timeline-images/2013.jpg',
+      image: '/about3.jpg',
       details: [
         'Sambalpur Plant:',
         'Commercial production started at the Sponge Iron plant (0.3 MTPA)',
@@ -45,7 +50,7 @@ export default function Timeline() {
       year: '2014', 
       title: 'Integrating Strength', 
       description: 'Sambalpur Plant:',
-      image: '/timeline-images/2014.jpg',
+      image: '/about4.jpg',
       details: [
         'Detail point 1 for 2014',
         'Detail point 2 for 2014',
@@ -56,7 +61,7 @@ export default function Timeline() {
       year: '2015', 
       title: 'Infrastructure in Motion', 
       description: 'Sambalpur Plant:',
-      image: '/timeline-images/2015.jpg',
+      image: '/about5.jpg',
       details: [
         'Detail point 1 for 2015',
         'Detail point 2 for 2015',
@@ -67,7 +72,7 @@ export default function Timeline() {
       year: '2019', 
       title: 'Strengthening the Core', 
       description: 'Sambalpur Plant:',
-      image: '/timeline-images/2019.jpg',
+      image: '/about6.jpg',
       details: [
         'Detail point 1 for 2019',
         'Detail point 2 for 2019',
@@ -78,7 +83,7 @@ export default function Timeline() {
       year: '2021', 
       title: 'Emerging Stronger', 
       description: 'Expanded TMT & Wire Rod capacities',
-      image: '/timeline-images/2021.jpg',
+      image: '/about1.jpg',
       details: [
         'Detail point 1 for 2021',
         'Detail point 2 for 2021',
@@ -89,7 +94,7 @@ export default function Timeline() {
       year: '2022', 
       title: 'Diversifying the Future', 
       description: 'TMT Bar capacity touched 1.17 MTPA',
-      image: '/timeline-images/2022.jpg',
+      image: '/about2.jpg',
       details: [
         'Detail point 1 for 2022',
         'Detail point 2 for 2022',
@@ -100,7 +105,7 @@ export default function Timeline() {
       year: '2024', 
       title: 'Leading with Purpose', 
       description: 'Forayed into Food Grade Aluminium Foils',
-      image: '/timeline-images/2024.jpg',
+      image: '/about3.jpg',
       details: [
         'Detail point 1 for 2024',
         'Detail point 2 for 2024',
@@ -111,7 +116,7 @@ export default function Timeline() {
       year: '2025', 
       title: 'Scaling with Next-Gen Transformation', 
       description: 'Sambalpur Plant:',
-      image: '/timeline-images/2025.jpg',
+      image: '/about4.jpg',
       details: [
         'Detail point 1 for 2025',
         'Detail point 2 for 2025',
@@ -129,6 +134,34 @@ export default function Timeline() {
   const blackTitleGap = 'mb-0';
   const orangeCardGap = 'mb-24';
   const blackCardGap = 'mt-10';
+
+  // Intersection Observers for entrance animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const headerObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setHeaderInView(true);
+      }
+    }, observerOptions);
+
+    const timelineObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setTimelineInView(true);
+      }
+    }, observerOptions);
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (timelineRef.current) timelineObserver.observe(timelineRef.current);
+
+    return () => {
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (timelineRef.current) timelineObserver.unobserve(timelineRef.current);
+    };
+  }, []);
 
   // Auto-cycle through years every 3 seconds - only when not paused
   useEffect(() => {
@@ -169,27 +202,58 @@ export default function Timeline() {
   };
 
   return (
-    <section className="pt-16 pb-12 bg-white overflow-visible">
-      {/* Header */}
-      <div className="text-center mb-8 px-4">
+    <section className="pt-16 bg-white overflow-visible">
+      {/* Header with Animation */}
+      <div 
+        ref={headerRef}
+        className={`text-center mb-8 px-4 transition-all duration-1000 ${
+          headerInView 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-10'
+        }`}
+      >
         <h1 className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
           The Shyam <span className="text-orange-600">Journey</span>
         </h1>
-        <p className="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+        <p className={`text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${
+          headerInView 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-5'
+        }`}
+        style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}>
           A timeline of innovation, growth, and excellence in the steel and metals industry
         </p>
       </div>
 
-      {/* Timeline Container - Full Width */}
-      <div className="relative w-full py-52 overflow-hidden bg-white" style={{ backgroundImage: 'url(/timeline.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      {/* Timeline Container - Full Width with Animation */}
+      <div 
+        ref={timelineRef}
+        className={`relative w-full py-52 overflow-hidden bg-white transition-all duration-1200 ${
+          timelineInView 
+            ? 'opacity-100 scale-100' 
+            : 'opacity-0 scale-95'
+        }`}
+        style={{ 
+          backgroundImage: 'url(/timeline.jpg)', 
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center', 
+          backgroundRepeat: 'no-repeat',
+          transitionDelay: timelineInView ? '400ms' : '0ms'
+        }}
+      >
         {/* Wave Line SVG - Scrolling with separate speed */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 z-0 pointer-events-none w-full">
+        <div className={`absolute top-1/2 left-0 -translate-y-1/2 z-0 pointer-events-none w-full transition-all duration-1000 ${
+          timelineInView 
+            ? 'opacity-100 scale-x-100' 
+            : 'opacity-0 scale-x-75'
+        }`}
+        style={{ transitionDelay: timelineInView ? '600ms' : '0ms' }}>
           <div
             className="animate-scroll-infinite flex"
             style={{
               width: 'max-content',
               animationDuration: waveSpeed,
-              animationPlayState: isPaused ? 'paused' : 'running'
+              animationPlayState: isPaused || !timelineInView ? 'paused' : 'running'
             }}
           >
             <svg
@@ -234,13 +298,16 @@ export default function Timeline() {
           </div>
         </div>
 
-        {/* Infinite Scrolling Timeline */}
-        <div className="relative z-10">
+        {/* Infinite Scrolling Timeline with Staggered Year Animations */}
+        <div className={`relative z-10 transition-opacity duration-1000 ${
+          timelineInView ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ transitionDelay: timelineInView ? '800ms' : '0ms' }}>
           <div
             className="flex items-center gap-20 animate-scroll-infinite"
             style={{ 
               animationDuration: timelineSpeed,
-              animationPlayState: isPaused ? 'paused' : 'running'
+              animationPlayState: isPaused || !timelineInView ? 'paused' : 'running'
             }}
           >
             {duplicatedData.map((item, index) => {
@@ -253,7 +320,14 @@ export default function Timeline() {
               return (
                 <div 
                   key={`${item.year}-${index}`} 
-                  className="flex flex-col items-center relative flex-shrink-0"
+                  className={`flex flex-col items-center relative flex-shrink-0 transition-all duration-700 ${
+                    timelineInView 
+                      ? 'opacity-100 translate-y-0 scale-100' 
+                      : 'opacity-0 translate-y-10 scale-75'
+                  }`}
+                  style={{ 
+                    transitionDelay: timelineInView ? `${1000 + (originalIndex * 100)}ms` : '0ms' 
+                  }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -271,7 +345,7 @@ export default function Timeline() {
                   {/* Year Badge with Breathing Ring - Positioned on wave line */}
                   <div className={`relative ${orangeYear ? '-mt-12' : 'mt-12'}`}>
                     {/* Breathing Ring Animation - only on active year */}
-                    {isActive && !isPaused && (
+                    {isActive && !isPaused && timelineInView && (
                       <div className="absolute inset-0 rounded-full pointer-events-none">
                         <div className="absolute inset-0 rounded-full border-4 border-white animate-breathe"></div>
                       </div>
