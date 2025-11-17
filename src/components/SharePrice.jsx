@@ -113,7 +113,7 @@ export default function SharePrice() {
   ];
 
   return (
-    <section className="py-16 px-4 lg:px-8 bg-white border-t border-gray-200">
+    <section className="py-16 px-4 lg:px-16 bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto">
         {/* Header Section with Animation */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">

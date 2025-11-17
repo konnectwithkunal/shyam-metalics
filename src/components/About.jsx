@@ -101,7 +101,7 @@ export default function About() {
   };
 
   return (
-    <section className="py-16 px-4 lg:px-8 bg-white">
+    <section className="py-16 px-4 lg:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Vision, Mission, Values Cards */}
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 items-stretch">

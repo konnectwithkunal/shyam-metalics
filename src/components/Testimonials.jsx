@@ -99,7 +99,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 px-4 lg:px-8 relative">
+    <section className="py-16 px-4 lg:px-16 relative">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
