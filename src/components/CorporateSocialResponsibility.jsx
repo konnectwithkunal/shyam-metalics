@@ -90,8 +90,8 @@ export default function CorporateSocialResponsibility() {
   };
 
   return (
-    <section className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
+    <section className="py-16 px-4 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
 
           {/* LEFT - Video Grid with Animation */}

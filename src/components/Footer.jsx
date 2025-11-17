@@ -55,13 +55,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='bg-black text-white xl-:scale-95 xl-:transition-transform xl-:duration-300'>
+    <footer className='bg-black text-white'>
       {/* Newsletter Section with Animation */}
-      <div 
+      <div
         ref={newsletterRef}
         className='border-b border-gray-800 py-6'
       >
-        <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4'>
+        <div className='max-w-7xl mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4'>
           <h2 className={`text-2xl font-bold text-center md:text-left transition-all duration-1000 ${
             newsletterInView
               ? 'opacity-100 translate-x-0'
@@ -112,11 +112,11 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Content with Animation */}
-      <div 
+      <div
         ref={contentRef}
         className='py-12'
       >
-        <div className='max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-8'>
+        <div className='max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-8'>
           {/* Certification Badge */}
           <div className={`col-span-2 md:col-span-1 transition-all duration-1000 ${
             contentInView 
@@ -327,7 +327,7 @@ export default function Footer() {
 
      {/* Bottom Bar - Always Visible */}
 <div className='border-t border-gray-800 py-4'>
-  <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400'>
+  <div className='max-w-7xl mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400'>
     <div className='flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left'>
       <div className='w-12 h-auto bg-orange-500 rounded flex items-center justify-center flex-shrink-0'>
         <img src='/logo.jpeg' alt='Logo' className='w-full h-full object-contain' />

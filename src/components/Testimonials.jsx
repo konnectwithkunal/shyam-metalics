@@ -99,7 +99,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 px-4 relative">
+    <section className="py-16 px-4 lg:px-8 relative">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
@@ -111,7 +111,7 @@ export default function Testimonials() {
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-white/30 z-0"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10 xl-:scale-95 xl-:transition-transform xl-:duration-300">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Animation */}
         <div ref={headerRef} className="text-center mb-12">
           <h2
