@@ -58,7 +58,7 @@ export default function BusinessVerticals() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 px-6 md:px-12 lg:px-32 xl:px-8 2xl:px-0 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
+      className="py-20 px-6 md:px-12 lg:px-32  bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
     >
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 rounded-full blur-3xl opacity-20 -z-10" />
