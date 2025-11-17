@@ -323,38 +323,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar with Animation */}
-      <div 
-        ref={bottomRef}
-        className='border-t border-gray-800 py-4'
-      >
-        <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400'>
-          <div className={`flex items-center gap-4 transition-all duration-1000 ${
-            bottomInView 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-10'
-          }`}>
-            <div className='w-12 h-auto bg-orange-500 rounded flex items-center justify-center'>
-              <img src='/logo.jpeg' alt='Logo' className='w-full h-full object-contain' />
-            </div>
-            <span>Copyright 2025 Shyam Theme by <a href='#' className='text-orange-500 hover:underline'>Shyam</a> | All Rights Reserved</span>
-          </div>
-          <div className={`flex items-center gap-4 transition-all duration-1000 ${
-            bottomInView 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 translate-x-10'
-          }`}
-          style={{ transitionDelay: bottomInView ? '200ms' : '0ms' }}>
-            <a href='#' className='hover:text-orange-500 transition-colors'>Privacy Policy</a>
-            <a href='#' className='hover:text-orange-500 transition-colors'>Terms of use</a>
-            <span className='flex items-center gap-2'>
-              <span className='w-2 h-2 bg-green-500 rounded-full'></span>
-              India
-            </span>
-            <a href='mailto:contact@shyamgroup.com' className='hover:text-orange-500 transition-colors'>contact@shyamgroup.com</a>
-          </div>
-        </div>
+     {/* Bottom Bar - Always Visible */}
+<div className='border-t border-gray-800 py-4'>
+  <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400'>
+    <div className='flex items-center gap-4'>
+      <div className='w-12 h-auto bg-orange-500 rounded flex items-center justify-center'>
+        <img src='/logo.jpeg' alt='Logo' className='w-full h-full object-contain' />
       </div>
+      <span>Copyright 2025 Shyam Theme by <a href='#' className='text-orange-500 hover:underline'>Shyam</a> | All Rights Reserved</span>
+    </div>
+    <div className='flex items-center gap-4'>
+      <a href='#' className='hover:text-orange-500 transition-colors'>Privacy Policy</a>
+      <a href='#' className='hover:text-orange-500 transition-colors'>Terms of use</a>
+      <span className='flex items-center gap-2'>
+        <span className='w-2 h-2 bg-green-500 rounded-full'></span>
+        India
+      </span>
+      <a href='mailto:contact@shyamgroup.com' className='hover:text-orange-500 transition-colors'>contact@shyamgroup.com</a>
+    </div>
+  </div>
+</div>  
     </footer>
   );
 }
