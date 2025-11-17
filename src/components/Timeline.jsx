@@ -202,7 +202,7 @@ export default function Timeline() {
   };
 
   return (
-    <section className="pt-16 bg-white overflow-visible">
+    <section className="pt-16 bg-white overflow-x-hidden overflow-y-visible">
       {/* Header with Animation */}
       <div
         ref={headerRef}
@@ -226,7 +226,7 @@ export default function Timeline() {
       {/* Timeline Container - Full Width with Animation */}
       <div
         ref={timelineRef}
-        className={`relative w-full py-52 overflow-hidden bg-white transition-all duration-1200 ${timelineInView
+        className={`relative w-full py-52 overflow-x-hidden overflow-y-visible bg-white transition-all duration-1200 ${timelineInView
             ? 'opacity-100 scale-100'
             : 'opacity-0 scale-95'
           }`}
