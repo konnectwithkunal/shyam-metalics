@@ -55,53 +55,55 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='bg-black text-white'>
+    <footer className='bg-black text-white xl-:scale-95 xl-:transition-transform xl-:duration-300'>
       {/* Newsletter Section with Animation */}
       <div 
         ref={newsletterRef}
         className='border-b border-gray-800 py-6'
       >
         <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4'>
-          <h2 className={`text-2xl font-bold transition-all duration-1000 ${
-            newsletterInView 
-              ? 'opacity-100 translate-x-0' 
+          <h2 className={`text-2xl font-bold text-center md:text-left transition-all duration-1000 ${
+            newsletterInView
+              ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-10'
           }`}>
             Subscribe to Our News Alerts
           </h2>
-          <div className='flex items-center gap-4'>
-            <input
-              type='email'
-              placeholder='Email Id'
-              className={`px-4 py-2 bg-gray-900 border border-gray-700 rounded text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 w-64 transition-all duration-1000 ${
-                newsletterInView 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-5'
+          <div className='flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto'>
+            <div className='flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto'>
+              <input
+                type='email'
+                placeholder='Email Id'
+                className={`px-4 py-2 bg-gray-900 border border-gray-700 rounded text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 w-full sm:w-64 transition-all duration-1000 ${
+                  newsletterInView
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: newsletterInView ? '200ms' : '0ms' }}
+              />
+              <button className={`px-6 py-2 bg-orange-500 hover:bg-orange-600 rounded font-semibold text-white transition-all duration-1000 w-full sm:w-auto ${
+                newsletterInView
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-75'
               }`}
-              style={{ transitionDelay: newsletterInView ? '200ms' : '0ms' }}
-            />
-            <button className={`px-6 py-2 bg-orange-500 hover:bg-orange-600 rounded font-semibold text-white transition-all duration-1000 ${
-              newsletterInView 
-                ? 'opacity-100 scale-100' 
-                : 'opacity-0 scale-75'
-            }`}
-            style={{ transitionDelay: newsletterInView ? '400ms' : '0ms' }}>
-              Subscribe
-            </button>
-            {/* Social Media Icons with Stagger */}
-            <div className='flex gap-3 items-center ml-2'>
+              style={{ transitionDelay: newsletterInView ? '400ms' : '0ms' }}>
+                Subscribe
+              </button>
+            </div>
+            {/* Social Media Icons with Stagger - Responsive */}
+            <div className='flex gap-2 sm:gap-3 items-center justify-center flex-wrap sm:ml-2'>
               {socialIcons.map((social, index) => (
-                <a 
+                <a
                   key={index}
-                  href={social.href} 
-                  className={`w-10 h-10 ${social.bg} rounded-full flex items-center justify-center hover:opacity-70 transition-all duration-700 ${
-                    newsletterInView 
-                      ? 'opacity-100 scale-100 rotate-0' 
+                  href={social.href}
+                  className={`w-9 h-9 sm:w-10 sm:h-10 ${social.bg} rounded-full flex items-center justify-center hover:opacity-70 transition-all duration-700 ${
+                    newsletterInView
+                      ? 'opacity-100 scale-100 rotate-0'
                       : 'opacity-0 scale-0 rotate-180'
                   }`}
                   style={{ transitionDelay: newsletterInView ? `${600 + (index * 100)}ms` : '0ms' }}
                 >
-                  <social.Icon className='text-white' />
+                  <social.Icon className='text-white text-sm sm:text-base' />
                 </a>
               ))}
             </div>
@@ -326,20 +328,20 @@ export default function Footer() {
      {/* Bottom Bar - Always Visible */}
 <div className='border-t border-gray-800 py-4'>
   <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400'>
-    <div className='flex items-center gap-4'>
-      <div className='w-12 h-auto bg-orange-500 rounded flex items-center justify-center'>
+    <div className='flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left'>
+      <div className='w-12 h-auto bg-orange-500 rounded flex items-center justify-center flex-shrink-0'>
         <img src='/logo.jpeg' alt='Logo' className='w-full h-full object-contain' />
       </div>
-      <span>Copyright 2025 Shyam Theme by <a href='#' className='text-orange-500 hover:underline'>Shyam</a> | All Rights Reserved</span>
+      <span className='text-xs sm:text-sm'>Copyright 2025 Shyam Theme by <a href='#' className='text-orange-500 hover:underline'>Shyam</a> | All Rights Reserved</span>
     </div>
-    <div className='flex items-center gap-4'>
+    <div className='flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-xs sm:text-sm'>
       <a href='#' className='hover:text-orange-500 transition-colors'>Privacy Policy</a>
       <a href='#' className='hover:text-orange-500 transition-colors'>Terms of use</a>
       <span className='flex items-center gap-2'>
         <span className='w-2 h-2 bg-green-500 rounded-full'></span>
         India
       </span>
-      <a href='mailto:contact@shyamgroup.com' className='hover:text-orange-500 transition-colors'>contact@shyamgroup.com</a>
+      <a href='mailto:contact@shyamgroup.com' className='hover:text-orange-500 transition-colors break-all'>contact@shyamgroup.com</a>
     </div>
   </div>
 </div>  

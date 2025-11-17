@@ -130,7 +130,7 @@ export default function GlobalPresence() {
 
   return (
     <section ref={sectionRef} className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
         {/* Main Header with Animation */}
         <h2 
           ref={headerRef}

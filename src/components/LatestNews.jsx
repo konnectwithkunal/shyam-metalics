@@ -91,7 +91,7 @@ export default function LatestNews() {
 
   return (
     <section className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
         {/* Header with Animation */}
         <div 
           ref={headerRef}
