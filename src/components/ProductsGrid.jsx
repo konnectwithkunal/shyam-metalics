@@ -74,7 +74,7 @@ export default function ProductsGrid() {
 
   return (
     <section ref={sectionRef} className="py-16 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto xl-:scale-95 xl-:transition-transform xl-:duration-300">
         {/* Header */}
         <h2 className="text-3xl lg:text-4xl font-bold mb-8">
           Integrated <span className="text-orange-500">Steel Solutions</span>
