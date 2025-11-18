@@ -71,8 +71,8 @@ export default function ManufacturingPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative w-full h-[60vh] overflow-hidden">
+      {/* Hero Section - 100vh */}
+      <section className="relative w-full h-screen overflow-hidden">
         <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <img src="/about1.jpg" alt="Manufacturing" className="w-full h-full object-cover" />
         </div>

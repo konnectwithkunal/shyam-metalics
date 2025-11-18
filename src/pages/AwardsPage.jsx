@@ -99,8 +99,8 @@ export default function AwardsPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Carousel */}
-      <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+      {/* Hero Carousel - 100vh */}
+      <section className="relative w-full h-screen overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
             key={index}

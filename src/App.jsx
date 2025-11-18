@@ -9,6 +9,8 @@ import AwardsPage from './pages/AwardsPage'
 import ManufacturingPage from './pages/ManufacturingPage'
 import TestimonialsPage from './pages/TestimonialsPage'
 import NewsEventsPage from './pages/NewsEventsPage'
+import BusinessPage from './pages/BusinessPage'
+import SingleProductPage from './pages/SingleProductPage'
 
 export default function App(){
   return (
@@ -24,6 +26,8 @@ export default function App(){
             <Route path="/manufacturing" element={<ManufacturingPage />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
             <Route path="/news-events" element={<NewsEventsPage />} />
+            <Route path="/business" element={<BusinessPage />} />
+            <Route path="/product/:productId" element={<SingleProductPage />} />
           </Routes>
         </main>
         <Footer />

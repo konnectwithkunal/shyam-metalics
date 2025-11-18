@@ -99,8 +99,8 @@ export default function TestimonialsPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+      {/* Hero Section - 100vh */}
+      <section className="relative w-full h-screen overflow-hidden">
         <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <img src="/testibanner.jpeg" alt="Testimonials" className="w-full h-full object-cover" />
         </div>
@@ -113,6 +113,12 @@ export default function TestimonialsPage() {
           style={{ transitionDelay: isVisible ? '500ms' : '0ms' }}>
             Testimonials
           </h1>
+          <p className={`text-lg md:text-xl text-white/90 max-w-2xl transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}>
+            Hear what our valued clients and partners say about us
+          </p>
         </div>
       </section>
 

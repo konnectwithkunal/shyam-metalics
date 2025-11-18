@@ -69,8 +69,8 @@ export default function Leadership() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+      {/* Hero Section - 100vh */}
+      <section className="relative w-full h-screen overflow-hidden">
         <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <img
             src="/about1.jpg"
@@ -87,6 +87,12 @@ export default function Leadership() {
           style={{ transitionDelay: isVisible ? '500ms' : '0ms' }}>
             Leadership
           </h1>
+          <p className={`text-lg md:text-xl text-white/90 max-w-2xl transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}>
+            Meet the visionary leaders driving Shyam Metalics towards excellence
+          </p>
         </div>
       </section>
 
