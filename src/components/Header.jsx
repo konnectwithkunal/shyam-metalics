@@ -96,9 +96,9 @@ export default function Header() {
         ];
       case 'BUSINESSES':
         return [
+          { to: '/business', label: 'Business Overview' },
           { to: '/manufacturing', label: 'Manufacturing Units' },
-          { to: '#', label: 'Products' },
-          { to: '#', label: 'Business Verticals' }
+          { to: '/product/tmt-bars', label: 'Products' }
         ];
       case 'COMMUNITY':
         return [
