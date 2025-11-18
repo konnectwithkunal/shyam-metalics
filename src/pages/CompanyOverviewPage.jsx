@@ -1,257 +1,359 @@
-import React from 'react';
-import { Building2, Factory, Award, Zap, TrendingUp, MapPin, Users, Shield, Landmark, Globe2, Boxes, LineChart } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronRight, Users, Globe, Award, Factory, TrendingUp, Building2 } from 'lucide-react';
 
 export default function CompanyOverviewPage() {
-  const milestones = [
-    { year: '1991', event: 'Shyam SEL and Power Limited incorporated under the leadership of Mr. Mahabir Prasad Agarwal' },
-    { year: '2002', event: 'Shyam DRI & Power Limited incorporated on 10 December at Kolkata, West Bengal' },
-    { year: '2010', event: 'Company renamed to Shyam Metalics and Energy Limited on 05 January' },
-    { year: '2021', event: 'Launched IPO raising approximately ₹909 crore, marking a significant milestone' },
-    { year: '2024', event: 'Expanded to 15.13 MTPA aggregate installed metal capacity across seven manufacturing plants' }
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const stats = [
+    { value: '50+', label: 'Years', sublabel: 'In the business of Steel' },
+    { value: '95 Mn t.p.a', label: 'Installed Capacity', sublabel: '' },
+    { value: '250 MW', label: 'Power', sublabel: 'Captive power plant' }
   ];
 
-  const facilities = [
+  const sectors = [
+    { image: '/about1.jpg', name: 'Infrastructure' },
+    { image: '/about2.jpg', name: 'Construction' },
+    { image: '/about3.jpg', name: 'Automotive' },
+    { image: '/about4.jpg', name: 'Energy' }
+  ];
+
+  const milestones = [
     {
-      location: 'Sambalpur, Odisha',
-      type: 'Ore to Metal Integrated Steel Plant',
-      features: ['Captive railway sidings', 'Captive power plants', 'Iron pellet & sponge iron', 'Billet, TMT & wire rod mills', 'Ferro alloy plants']
+      year: '1955',
+      title: 'Foundation',
+      description: 'Shyam Group was established, laying the foundation for decades of industrial excellence'
     },
     {
-      location: 'Jamuria, West Bengal',
-      type: 'Ore to Metal Integrated Steel Plant',
-      features: ['Captive railway sidings', 'Captive power plants', 'Structural mills', 'TMT manufacturing', 'Ferro alloy production']
+      year: '1975',
+      title: 'First Expansion',
+      description: 'Expanded operations with new manufacturing facilities'
     },
     {
-      location: 'Mangalpur, West Bengal',
-      type: 'Specialized Manufacturing Plant',
-      features: ['Sponge iron production', 'Ferro alloy plants', 'Captive power plant']
+      year: '1985',
+      title: 'Modernization',
+      description: 'Introduced modern technology and automated processes'
+    },
+    {
+      year: '1991',
+      title: 'New Era',
+      description: 'Shyam SEL and Power Limited incorporated under the leadership of Mr. Mahabir Prasad Agarwal'
+    },
+    {
+      year: '2002',
+      title: 'Strategic Growth',
+      description: 'Shyam DRI & Power Limited incorporated on 10 December at Kolkata, West Bengal'
+    },
+    {
+      year: '2010',
+      title: 'Rebranding',
+      description: 'Company renamed to Shyam Metalics and Energy Limited on 05 January'
+    },
+    {
+      year: '2021',
+      title: 'IPO Launch',
+      description: 'Launched IPO raising approximately ₹909 crore, marking a significant milestone'
     }
   ];
 
-  const products = [
-    { name: 'Iron Pellets', category: 'Primary Products' },
-    { name: 'Sponge Iron', category: 'Primary Products' },
-    { name: 'Steel Billets', category: 'Long Steel' },
-    { name: 'TMT Bars', category: 'Long Steel' },
-    { name: 'Wire Rods', category: 'Long Steel' },
-    { name: 'Structural Products', category: 'Long Steel' },
-    { name: 'Ferro Chrome', category: 'Ferro Alloys' },
-    { name: 'Ferro Manganese', category: 'Ferro Alloys' },
-    { name: 'Silico Manganese', category: 'Ferro Alloys' },
-    { name: 'Pig Iron', category: 'Ferro Alloys' },
-    { name: 'Aluminium Foils', category: 'Specialized Products' },
-    { name: 'Stainless Steel Wire Rods', category: 'Specialized Products' }
+  const businessImages = [
+    { image: '/about1.jpg', title: 'Leadership Team' },
+    { image: '/about2.jpg', title: 'Strategic Planning' },
+    { image: '/about5.jpg', title: 'Operations' },
+    { image: '/about6.jpg', title: 'Innovation' }
   ];
 
-  const keyStats = [
-    { icon: Factory, value: '7', label: 'Manufacturing Plants', description: 'Across West Bengal, Odisha, Indore, Kharagpur & Jharkhand' },
-    { icon: TrendingUp, value: '15.13 MTPA', label: 'Installed Capacity', description: 'Aggregate metal production capacity as of Dec 2024' },
-    { icon: Zap, value: '376 MW', label: 'Power Generation', description: 'Captive power plants capacity as of March 2024' },
-    { icon: Award, value: '6th Largest', label: 'Market Position', description: 'Metal producing company in India' }
+  const directors = [
+    { name: 'Mr. Brij Bhushan Agarwal', position: 'Vice Chairman & Managing Director', image: '/about1.jpg' },
+    { name: 'Mr. Sanjay Agarwal', position: 'Managing Director & CEO', image: '/about2.jpg' },
+    { name: 'Ms. Priti Agarwal', position: 'Whole-time Director', image: '/about3.jpg' }
+  ];
+
+  const products = [
+    { category: 'Iron & Steel', items: ['Iron Pellets', 'Sponge Iron', 'Steel Billets', 'TMT Bars', 'Wire Rods', 'Structural Steel'] },
+    { category: 'Ferro Alloys', items: ['Ferro Chrome', 'Ferro Manganese', 'Silico Manganese', 'Ferro Silicon'] },
+    { category: 'Aluminium', items: ['Aluminium Foils', 'Food Grade Foils', 'Household Foils'] },
+    { category: 'Specialty Products', items: ['Stainless Steel Wire Rods', 'Bright Bars', 'Pig Iron'] }
   ];
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
-            <Building2 className="w-16 h-16 text-orange-500 mx-auto" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-gray-900">Company</span>{' '}
-            <span className="text-orange-500">Overview</span>
+    <div className="bg-white">
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
+        <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <img
+            src="/about1.jpg"
+            alt="Industrial Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className={`absolute top-0 left-0 w-full h-full bg-black/60 transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+
+        <div className="relative z-10 flex flex-col justify-center items-center h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-4 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: isVisible ? '500ms' : '0ms' }}>
+            Through Time <span className="text-orange-400">Endless Innovation</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            One of India's leading integrated metal producers with end-to-end solutions and a diversified product portfolio
+          <p className={`text-lg md:text-xl text-white/90 text-center max-w-3xl transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}>
+            Building India's infrastructure with strength, sustainability, and excellence
           </p>
         </div>
+      </section>
 
-        {/* Introduction */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-gray-900">
-            About <span className="text-orange-500">Shyam Metalics</span>
-          </h2>
-          <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p className="text-lg">
-              Shyam Metalics is the <strong>6th largest metal producing company in India</strong>, providing end-to-end solutions with integrated capabilities. We specialize in Long Steel Products and Ferro Alloys, and are amongst the largest ferro alloys producers in terms of installed capacity in India.
-            </p>
-            <p className="text-lg">
-              Operating seven state-of-the-art manufacturing plants across India, we maintain an aggregate installed metal capacity of <strong>15.13 MTPA</strong> as of December 2024. Our strategic locations span West Bengal, Odisha, Indore, Kharagpur, and Jharkhand, enabling us to serve customers across the nation efficiently.
-            </p>
-            <p className="text-lg">
-              With a robust "Ore to Metal" integrated manufacturing model and <strong>83% captive power generation</strong>, we ensure operational excellence, cost efficiency, and sustainable production practices. Our commitment to innovation and quality has positioned us as a trusted partner in India's industrial growth story.
-            </p>
-          </div>
-        </div>
-
-        {/* Key Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {keyStats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-t-4 border-orange-500"
-            >
-              <div className="flex flex-col items-center text-center">
-                <stat.icon className="w-12 h-12 text-orange-500 mb-4" />
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-lg font-semibold text-gray-800 mb-2">{stat.label}</div>
-                <div className="text-sm text-gray-600">{stat.description}</div>
+      {/* About Us Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Left - Text Content */}
+            <div className="lg:col-span-2">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <span className="text-gray-900">ABOUT</span> <span className="text-orange-500">US</span>
+              </h2>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg">
+                  Shyam Metalics and Energy Limited is one of India's leading integrated metal producers, providing comprehensive end-to-end solutions. We are the 6th largest metal producing company in India with a diversified product portfolio spanning Long Steel Products, Ferro Alloys, and Specialty Products.
+                </p>
+                <p className="text-base md:text-lg">
+                  Operating seven state-of-the-art manufacturing plants across India, we maintain an aggregate installed metal capacity of 15.13 MTPA as of December 2024. Our strategic locations span West Bengal, Odisha, Indore, Kharagpur, and Jharkhand, enabling us to serve customers across the nation efficiently.
+                </p>
+                <p className="text-base md:text-lg">
+                  With our robust "Ore to Metal" integrated manufacturing model and 83% captive power generation, we ensure operational excellence, cost efficiency, and sustainable production practices. Our commitment to innovation and quality has positioned us as a trusted partner in India's industrial growth story.
+                </p>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* History & Milestones */}
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl shadow-lg p-8 md:p-12 mb-12 text-white">
-          <div className="flex items-center gap-3 mb-8">
-            <Landmark className="w-10 h-10" />
-            <h2 className="text-3xl font-bold">Our Journey</h2>
+            {/* Right - Statistics */}
+            <div className="space-y-6">
+              {stats.map((stat, index) => (
+                <div key={index} className="bg-gradient-to-br from-orange-50 to-white border-l-4 border-orange-500 p-6 rounded-lg shadow-md">
+                  <div className="text-4xl font-bold text-orange-500 mb-2">{stat.value}</div>
+                  <div className="text-lg font-semibold text-gray-900">{stat.label}</div>
+                  {stat.sublabel && <div className="text-sm text-gray-600">{stat.sublabel}</div>}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="space-y-6">
+        </div>
+      </section>
+
+      {/* Powering Core Sectors */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">POWERING CORE</span> <span className="text-orange-500">SECTORS</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {sectors.map((sector, index) => (
+              <div key={index} className="flex flex-col items-center group">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <img
+                    src={sector.image}
+                    alt={sector.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">{sector.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Milestones */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">OUR</span> <span className="text-orange-500">MILESTONES</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className="flex gap-6 items-start bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300"
+                className="bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="flex-shrink-0">
-                  <div className="bg-white text-orange-600 font-bold text-xl px-4 py-2 rounded-lg shadow-md">
-                    {milestone.year}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <p className="text-lg leading-relaxed">{milestone.event}</p>
+                <div className="text-5xl font-bold mb-3">{milestone.year}</div>
+                <div className="text-xl font-semibold mb-2">{milestone.title}</div>
+                <p className="text-sm text-white/90 leading-relaxed">{milestone.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Leadership */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">BUSINESS &</span> <span className="text-orange-500">LEADERSHIP</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {businessImages.map((item, index) => (
+              <div key={index} className="relative overflow-hidden rounded-lg shadow-lg group h-64">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 className="text-white font-semibold text-sm md:text-base">{item.title}</h3>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Manufacturing Facilities */}
-        <div className="mb-12">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-gray-900">Manufacturing</span>{' '}
-              <span className="text-orange-500">Excellence</span>
+      {/* Manufacturing Excellence */}
+      <section className="py-16 px-4 bg-black text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-white">MANUFACTURING</span> <span className="text-orange-400">EXCELLENCE</span>
             </h2>
-            <p className="text-gray-600 text-lg">
-              World-class integrated facilities powered by innovation and sustainability
-            </p>
+            <p className="text-white/80 text-lg">State-of-the-art facilities ensuring world-class quality and efficiency</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="h-64 overflow-hidden rounded-lg">
+              <img src="/about1.jpg" alt="Manufacturing" className="w-full h-full object-cover" />
+            </div>
+            <div className="h-64 overflow-hidden rounded-lg">
+              <img src="/iron-steel.jpg" alt="Production" className="w-full h-full object-cover" />
+            </div>
+            <div className="h-64 overflow-hidden rounded-lg">
+              <img src="/about3.jpg" alt="Facility" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Board of Directors */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">BOARD OF</span> <span className="text-orange-500">DIRECTORS</span>
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {facilities.map((facility, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white">
-                  <MapPin className="w-8 h-8 mb-3" />
-                  <h3 className="text-xl font-bold mb-2">{facility.location}</h3>
-                  <p className="text-orange-100 text-sm">{facility.type}</p>
+            {directors.map((director, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div className="h-80 overflow-hidden">
+                  <img
+                    src={director.image}
+                    alt={director.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    {facility.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Shield className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="p-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{director.name}</h3>
+                  <p className="text-gray-600">{director.position}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Products Portfolio */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
-          <div className="text-center mb-10">
-            <Boxes className="w-12 h-12 text-orange-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-gray-900">Product</span>{' '}
-              <span className="text-orange-500">Portfolio</span>
+      {/* Global Presence & Export */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">GLOBAL PRESENCE &</span> <span className="text-orange-500">EXPORT</span>
             </h2>
-            <p className="text-gray-600 text-lg">
-              Comprehensive range of high-quality metal products for diverse industries
-            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-4 hover:border-orange-500 hover:shadow-md transition-all duration-300"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <img src="/asia.png" alt="Global Presence" className="w-full h-auto" />
+            </div>
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500">
+                <div className="flex items-center gap-4">
+                  <Globe className="w-12 h-12 text-orange-500" />
                   <div>
-                    <h4 className="font-semibold text-gray-900">{product.name}</h4>
-                    <p className="text-sm text-gray-500">{product.category}</p>
+                    <div className="text-3xl font-bold text-orange-500">50+</div>
+                    <div className="text-gray-700">Countries Served</div>
                   </div>
                 </div>
               </div>
-            ))}
+              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500">
+                <div className="flex items-center gap-4">
+                  <TrendingUp className="w-12 h-12 text-orange-500" />
+                  <div>
+                    <div className="text-3xl font-bold text-orange-500">30%</div>
+                    <div className="text-gray-700">Export Revenue</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500">
+                <div className="flex items-center gap-4">
+                  <Award className="w-12 h-12 text-orange-500" />
+                  <div>
+                    <div className="text-3xl font-bold text-orange-500">100+</div>
+                    <div className="text-gray-700">Global Partners</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Competitive Advantages */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-br from-orange-50 to-white rounded-xl p-8 border-2 border-orange-200">
-            <Globe2 className="w-10 h-10 text-orange-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Strengths</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Fully integrated "Ore to Metal" manufacturing model</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>83% captive power generation ensuring energy security</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Strategic locations with captive railway sidings</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Diversified product portfolio across multiple segments</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>State-of-the-art manufacturing facilities</span>
-              </li>
-            </ul>
+      {/* Products & Services Table */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">PRODUCTS &</span> <span className="text-orange-500">SERVICES</span>
+            </h2>
           </div>
-
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border-2 border-gray-200">
-            <LineChart className="w-10 h-10 text-orange-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Recent Expansions</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Entry into Food Grade Aluminium Foils manufacturing</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Launch of Stainless Steel Wire Rods production</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Bright Bars manufacturing capability added</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Continuous capacity expansion across facilities</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 font-bold">•</span>
-                <span>Enhanced ferro alloys production capacity</span>
-              </li>
-            </ul>
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-lg font-semibold">Product Category</th>
+                    <th className="px-6 py-4 text-left text-lg font-semibold">Products</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((category, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                      <td className="px-6 py-4 font-semibold text-gray-900 border-b">{category.category}</td>
+                      <td className="px-6 py-4 text-gray-700 border-b">
+                        <div className="flex flex-wrap gap-2">
+                          {category.items.map((item, idx) => (
+                            <span key={idx} className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
