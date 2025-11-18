@@ -1,146 +1,169 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 
 export default function Leadership() {
-  const leaders = [
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const boardChairman = {
+    name: 'Mr. Brindra Agarwal',
+    position: 'Board Chairman',
+    image: '/about1.jpg',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+  };
+
+  const boardOfDirectors = [
+    { name: 'Mrs. Sanjay Agarwal', position: 'Managing Director & CEO', image: '/about2.jpg' },
+    { name: 'Mr. Priti Agarwal', position: 'Whole-time Director', image: '/about3.jpg' },
+    { name: 'Mr. Rahul Agarwal', position: 'Independent Director', image: '/about4.jpg' }
+  ];
+
+  const committees = [
     {
-      name: 'Brij Bhushan Agarwal',
-      position: 'Vice-Chairman & Managing Director',
-      image: '/leaders/brij-bhushan.jpg',
-      description: 'A visionary leader with decades of experience in the metals industry, driving strategic growth and operational excellence.',
-      linkedin: '#',
-      email: '#'
+      title: 'Audit Committee',
+      members: [
+        { name: 'Mr. Ravi Jhunjhunwala', position: 'Chairman', image: '/about1.jpg' },
+        { name: 'Mr. Ghanshyam Das', position: 'Member', image: '/about2.jpg' },
+        { name: 'Mrs. Priti Agarwal', position: 'Member', image: '/about3.jpg' }
+      ]
     },
     {
-      name: 'Sanjay Kumar Agarwal',
-      position: 'Whole-time Director & CFO',
-      image: '/leaders/sanjay-kumar.jpg',
-      description: 'Expert in financial strategy and corporate governance, ensuring sustainable growth and stakeholder value.',
-      linkedin: '#',
-      email: '#'
+      title: 'Nomination and Remuneration Committee',
+      members: [
+        { name: 'Mr. Arvind Singhal', position: 'Chairman', image: '/about4.jpg' },
+        { name: 'Mr. Ravi Jhunjhunwala', position: 'Member', image: '/about5.jpg' },
+        { name: 'Mr. Ghanshyam Das', position: 'Member', image: '/about6.jpg' }
+      ]
     },
     {
-      name: 'Susil Kumar Agarwal',
-      position: 'Whole-time Director',
-      image: '/leaders/susil-kumar.jpg',
-      description: 'Passionate about operational excellence and innovation in manufacturing processes.',
-      linkedin: '#',
-      email: '#'
+      title: 'Stakeholders Relationship Committee',
+      members: [
+        { name: 'Mr. Ghanshyam Das', position: 'Chairman', image: '/about1.jpg' },
+        { name: 'Mr. Brij Bhushan', position: 'Member', image: '/about2.jpg' },
+        { name: 'Mrs. Priti Agarwal', position: 'Member', image: '/about3.jpg' }
+      ]
     },
     {
-      name: 'Ravi Jhunjhunwala',
-      position: 'Independent Director',
-      image: '/leaders/ravi-jhunjhunwala.jpg',
-      description: 'Brings extensive expertise in corporate strategy and governance.',
-      linkedin: '#',
-      email: '#'
+      title: 'Corporate Social Responsibility Committee',
+      members: [
+        { name: 'Mrs. Priti Agarwal', position: 'Chairman', image: '/about4.jpg' },
+        { name: 'Mr. Arvind Singhal', position: 'Member', image: '/about5.jpg' },
+        { name: 'Mr. Sanjay Agarwal', position: 'Member', image: '/about6.jpg' }
+      ]
     },
     {
-      name: 'Ghanshyam Das Agarwal',
-      position: 'Independent Director',
-      image: '/leaders/ghanshyam-das.jpg',
-      description: 'Seasoned professional with deep industry knowledge and strategic insights.',
-      linkedin: '#',
-      email: '#'
-    },
-    {
-      name: 'Arvind Kumar Singhal',
-      position: 'Independent Director',
-      image: '/leaders/arvind-kumar.jpg',
-      description: 'Expert in business development and strategic planning.',
-      linkedin: '#',
-      email: '#'
+      title: 'Risk Management Committee',
+      members: [
+        { name: 'Mr. Ravi Jhunjhunwala', position: 'Chairman', image: '/about1.jpg' },
+        { name: 'Mr. Brij Bhushan', position: 'Member', image: '/about2.jpg' },
+        { name: 'Mr. Sanjay Agarwal', position: 'Member', image: '/about3.jpg' }
+      ]
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Leadership</h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto opacity-90">
-              Meet the visionary leaders driving Shyam Metalics towards excellence and sustainable growth
-            </p>
-          </div>
+      <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+        <div className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <img
+            src="/about1.jpg"
+            alt="Leadership"
+            className="w-full h-full object-cover"
+          />
         </div>
-        {/* Decorative Bottom Wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full">
-            <path
-              fill="#ffffff"
-              fillOpacity="1"
-              d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-            ></path>
-          </svg>
+        <div className={`absolute top-0 left-0 w-full h-full bg-black/60 transition-opacity duration-1500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+
+        <div className="relative z-10 flex flex-col justify-center items-start h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: isVisible ? '500ms' : '0ms' }}>
+            Leadership
+          </h1>
         </div>
       </section>
 
-      {/* Leadership Team Grid */}
-      <section className="py-16 px-4">
+      {/* Meet Our Team Section */}
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              <span className="text-orange-500">Board of</span> Directors
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Our board combines extensive industry experience with strategic vision to guide Shyam Metalics towards continued success.
-            </p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+            <span className="text-gray-900">Meet Our</span> <span className="text-orange-500">Team</span>
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left - Board Chairman Info */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{boardChairman.position}</h3>
+              <p className="text-gray-700 leading-relaxed mb-6">{boardChairman.description}</p>
+              <div className="inline-block">
+                <div className="text-xl font-bold text-orange-500">{boardChairman.name}</div>
+                <div className="text-gray-600">{boardChairman.position}</div>
+              </div>
+            </div>
+
+            {/* Right - Chairman Image */}
+            <div className="relative">
+              <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
+                <img
+                  src={boardChairman.image}
+                  alt={boardChairman.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Leadership Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {leaders.map((leader, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-500"
-              >
-                {/* Image Container */}
-                <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                  {/* Placeholder for leader image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-4xl font-bold">
-                      {leader.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
+          {/* Board of Directors Section */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold mb-4">
+              <span className="text-gray-900">Board of</span> <span className="text-orange-500">Directors</span>
+            </h3>
+            <p className="text-gray-700 leading-relaxed max-w-4xl mb-8">
+              Our board of directors brings together diverse expertise and extensive experience in the metals industry. They provide strategic guidance and ensure corporate governance excellence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Board of Committees */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <span className="text-gray-900">BOARD OF</span> <span className="text-orange-500">COMMITTEES</span>
+          </h2>
+
+          <div className="space-y-12">
+            {committees.map((committee, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-6 border-b-2 border-orange-200 pb-3">
+                  {committee.title}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {committee.members.map((member, index) => (
+                    <div
+                      key={index}
+                      className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-orange-500 transition-all duration-300"
+                    >
+                      <div className="h-64 overflow-hidden bg-gray-100">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4 text-center">
+                        <h4 className="font-bold text-gray-900 mb-1">{member.name}</h4>
+                        <p className="text-sm text-orange-500 font-semibold">{member.position}</p>
+                      </div>
                     </div>
-                  </div>
-                  {/* Uncomment when images are available */}
-                  {/* <img
-                    src={leader.image}
-                    alt={leader.name}
-                    className="w-full h-full object-cover"
-                  /> */}
-                </div>
-
-                {/* Content Container */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {leader.name}
-                  </h3>
-                  <div className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full inline-block mb-4">
-                    <p className="text-sm font-semibold">{leader.position}</p>
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    {leader.description}
-                  </p>
-
-                  {/* Social Links */}
-                  <div className="flex gap-3 pt-4 border-t border-gray-200">
-                    <a
-                      href={leader.linkedin}
-                      className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={`mailto:${leader.email}`}
-                      className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white transition-colors"
-                      aria-label="Email"
-                    >
-                      <Mail className="w-5 h-5" />
-                    </a>
-                  </div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -148,10 +171,10 @@ export default function Leadership() {
         </div>
       </section>
 
-      {/* Leadership Message Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-orange-50 to-white">
+      {/* Leadership Philosophy Section */}
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-l-4 border-orange-500">
+          <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg p-8 md:p-12 border-l-4 border-orange-500">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Leadership Philosophy
             </h2>
@@ -162,10 +185,9 @@ export default function Leadership() {
               </p>
               <p>
                 Our board brings together diverse expertise from across industries, ensuring that we maintain the highest
-                standards of corporate governance while driving innovation and growth. Together, we are steering Shyam
-                Metalics towards becoming a global benchmark in the metals industry.
+                standards of corporate governance while driving innovation and growth.
               </p>
-              <p className="font-semibold text-orange-600">
+              <p className="font-semibold text-orange-600 text-lg">
                 "Building India's future through sustainable metal solutions and ethical leadership."
               </p>
             </div>
