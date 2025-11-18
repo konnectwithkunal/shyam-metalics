@@ -190,19 +190,21 @@ export default function Header() {
                     {/* Dropdown Menu */}
                     {item.hasDropdown && openDropdown === item.name && (
                       <div
-                        className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
+                        className="absolute top-full left-0 pt-2 z-50"
                         onMouseEnter={() => setOpenDropdown(item.name)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
-                        {getDropdownContent(item.name).map((link, idx) => (
-                          <Link 
-                            key={idx}
-                            to={link.to} 
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600"
-                          >
-                            {link.label}
-                          </Link>
-                        ))}
+                        <div className="w-56 bg-white shadow-lg rounded-md py-2 animate-fadeInDown">
+                          {getDropdownContent(item.name).map((link, idx) => (
+                            <Link
+                              key={idx}
+                              to={link.to}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                            >
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -338,19 +340,21 @@ export default function Header() {
                         {/* Dropdown Menu */}
                         {item.hasDropdown && openDropdown === item.name && (
                           <div
-                            className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
+                            className="absolute top-full left-0 pt-2 z-50"
                             onMouseEnter={() => setOpenDropdown(item.name)}
                             onMouseLeave={() => setOpenDropdown(null)}
                           >
-                            {getDropdownContent(item.name).map((link, idx) => (
-                              <Link 
-                                key={idx}
-                                to={link.to} 
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600"
-                              >
-                                {link.label}
-                              </Link>
-                            ))}
+                            <div className="w-56 bg-white shadow-lg rounded-md py-2 animate-fadeInDown">
+                              {getDropdownContent(item.name).map((link, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={link.to}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                                >
+                                  {link.label}
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>
