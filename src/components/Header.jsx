@@ -190,7 +190,7 @@ export default function Header() {
                     {/* Dropdown Menu */}
                     {item.hasDropdown && openDropdown === item.name && (
                       <div
-                        className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
+                        className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
                         onMouseEnter={() => setOpenDropdown(item.name)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
@@ -338,7 +338,7 @@ export default function Header() {
                         {/* Dropdown Menu */}
                         {item.hasDropdown && openDropdown === item.name && (
                           <div
-                            className="absolute top-full left-0 mt-1 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
+                            className="absolute top-full left-0 w-56 bg-white shadow-lg rounded-md py-2 z-50 animate-fadeInDown"
                             onMouseEnter={() => setOpenDropdown(item.name)}
                             onMouseLeave={() => setOpenDropdown(null)}
                           >
